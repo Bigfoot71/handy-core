@@ -17,8 +17,8 @@
  *   3. This notice may not be removed or altered from any source distribution.
  */
 
-#ifndef HC_POINT_H
-#define HC_POINT_H
+#ifndef HC_FIXED_H
+#define HC_FIXED_H
 
 #include <stdint.h>
 
@@ -40,23 +40,13 @@
 
 #define HC_FX32_ONE (1 << HC_FX32_FRACTIONAL_BITS)
 #define HC_FX16_ONE (1 << HC_FX16_FRACTIONAL_BITS)
-#define HC_FRACT16_ONE 0xFFFF
-
-/* Platform Specific */
-
-#ifndef HC_RESTRICT
-#   ifdef _MSC_VER
-#       define HC_RESTRICT __restrict
-#   else //ANY_PLATFORM
-#       define HC_RESTRICT restrict
-#   endif //PLATFORM
-#endif //HC_RESTRICT
+#define HC_FR16_ONE 0xFFFF
 
 /* Types definitions */
 
 typedef int32_t hc_fx32_t;
 typedef int16_t hc_fx16_t;
-typedef uint16_t hc_fract16_t;
+typedef uint16_t hc_fr16_t;
 typedef uint16_t hc_float16_t;
 
 /* Fixed point 32 bits */
@@ -252,115 +242,57 @@ hc_div_fx16(hc_fx16_t x, hc_fx16_t y)
 
 /* Fract type 16 bits */
 
-HCSAPI hc_fract16_t
-hc_cvt_f32_fract16(float x)
+HCSAPI hc_fr16_t
+hc_cvt_f32_fr16(float x)
 {
     if (x <= 0.0f) return 0;
-    if (x >= 1.0f) return HC_FRACT16_ONE;
-    return (hc_fract16_t)(x * HC_FRACT16_ONE + 0.5f);
+    if (x >= 1.0f) return HC_FR16_ONE;
+    return (hc_fr16_t)(x * HC_FR16_ONE + 0.5f);
 }
 
 HCSAPI float
-hc_cvt_fract16_f32(hc_fract16_t x)
+hc_cvt_fr16_f32(hc_fr16_t x)
 {
-    return (float)x / HC_FRACT16_ONE;
+    return (float)x / HC_FR16_ONE;
 }
 
-HCSAPI hc_fract16_t
-hc_cvt_fx16_fract16(hc_fx16_t x)
+HCSAPI hc_fr16_t
+hc_cvt_fx16_fr16(hc_fx16_t x)
 {
     if (x <= 0) return 0;
-    if (x >= (1 << HC_FX16_FRACTIONAL_BITS)) return HC_FRACT16_ONE;
-    return (hc_fract16_t)((uint32_t)x * HC_FRACT16_ONE >> HC_FX16_FRACTIONAL_BITS);
+    if (x >= (1 << HC_FX16_FRACTIONAL_BITS)) return HC_FR16_ONE;
+    return (hc_fr16_t)((uint32_t)x * HC_FR16_ONE >> HC_FX16_FRACTIONAL_BITS);
 }
 
 HCSAPI hc_fx16_t
-hc_cvt_fract16_fx16(hc_fract16_t x)
+hc_cvt_fr16_fx16(hc_fr16_t x)
 {
-    return (hc_fx16_t)((uint32_t)x * (1 << HC_FX16_FRACTIONAL_BITS) / HC_FRACT16_ONE);
+    return (hc_fx16_t)((uint32_t)x * (1 << HC_FX16_FRACTIONAL_BITS) / HC_FR16_ONE);
 }
 
-HCSAPI hc_fract16_t
-hc_add_fract16(hc_fract16_t x, hc_fract16_t y)
+HCSAPI hc_fr16_t
+hc_add_fr16(hc_fr16_t x, hc_fr16_t y)
 {
     uint32_t result = (uint32_t)x + y;
-    return (result > HC_FRACT16_ONE) ? HC_FRACT16_ONE : (hc_fract16_t)result;
+    return (result > HC_FR16_ONE) ? HC_FR16_ONE : (hc_fr16_t)result;
 }
 
-HCSAPI hc_fract16_t
-hc_sub_fract16(hc_fract16_t x, hc_fract16_t y)
+HCSAPI hc_fr16_t
+hc_sub_fr16(hc_fr16_t x, hc_fr16_t y)
 {
     return (x > y) ? (x - y) : 0;
 }
 
-HCSAPI hc_fract16_t
-hc_mul_fract16(hc_fract16_t x, hc_fract16_t y)
+HCSAPI hc_fr16_t
+hc_mul_fr16(hc_fr16_t x, hc_fr16_t y)
 {
-    return (hc_fract16_t)(((uint32_t)x * y + HC_FRACT16_ONE / 2) >> 16);
+    return (hc_fr16_t)(((uint32_t)x * y + HC_FR16_ONE / 2) >> 16);
 }
 
-HCSAPI hc_fract16_t
-hc_div_fract16(hc_fract16_t x, hc_fract16_t y)
+HCSAPI hc_fr16_t
+hc_div_fr16(hc_fr16_t x, hc_fr16_t y)
 {
-    return (hc_fract16_t)(((uint32_t)x << 16) / y);
+    return (hc_fr16_t)(((uint32_t)x << 16) / y);
 }
 
-/* Float type 16 bits */
-
-HCSAPI uint16_t
-hc_cvt_fhi(uint32_t ui)
-{
-    int32_t s = (ui >> 16) & 0x8000;
-    int32_t em = ui & 0x7fffffff;
-
-    // bias exponent and round to nearest; 112 is relative exponent bias (127-15)
-    int32_t h = (em - (112 << 23) + (1 << 12)) >> 13;
-
-    // underflow: flush to zero; 113 encodes exponent -14
-    h = (em < (113 << 23)) ? 0 : h;
-
-    // overflow: infinity; 143 encodes exponent 16
-    h = (em >= (143 << 23)) ? 0x7c00 : h;
-
-    // NaN; note that we convert all types of NaN to qNaN
-    h = (em > (255 << 23)) ? 0x7e00 : h;
-
-    return (uint16_t)(s | h);
-}
-
-HCSAPI uint32_t
-hc_cvt_hfi(uint16_t h)
-{
-    uint32_t s = (unsigned)(h & 0x8000) << 16;
-    int32_t em = h & 0x7fff;
-
-    // bias exponent and pad mantissa with 0; 112 is relative exponent bias (127-15)
-    int32_t r = (em + (112 << 10)) << 13;
-
-    // denormal: flush to zero
-    r = (em < (1 << 10)) ? 0 : r;
-
-    // infinity/NaN; note that we preserve NaN payload as a byproduct of unifying inf/nan cases
-    // 112 is an exponent bias fixup; since we already applied it once, applying it twice converts 31 to 255
-    r += (em >= (31 << 10)) ? (112 << 23) : 0;
-
-    return s | r;
-}
-
-HCSAPI hc_float16_t
-hc_cvt_fh(float i)
-{
-    union { float f; uint32_t i; } v;
-    v.f = i;
-    return hc_cvt_fhi(v.i);
-}
-
-HCSAPI float
-hc_cvt_hf(hc_float16_t y)
-{
-    union { float f; uint32_t i; } v;
-    v.i = hc_cvt_hfi(y);
-    return v.f;
-}
-
-#endif // HC_POINT_H
+#endif // HC_FIXED_H
