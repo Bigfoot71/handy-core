@@ -239,7 +239,7 @@ int hc_append_char_string(hc_string_t* str, char c)
 bool hc_cmp_string(const hc_string_t* a, const hc_string_t* b)
 {
     if (a->length != b->length) return false;
-    strncmp(a->data, b->data, a->length);
+    return !strncmp(a->data, b->data, a->length);
 }
 
 #endif // HC_STRING_IMPL
