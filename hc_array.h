@@ -1,6 +1,13 @@
 #ifndef HC_ARRAY_H
 #define HC_ARRAY_H
 
+#include <string.h>
+#include <stdlib.h>
+#include <stdint.h>
+#include <stdbool.h>
+
+/* Macros and defintions */
+
 #ifndef HC_MALLOC
 #   define HC_MALLOC(sz) malloc(sz)
 #endif
@@ -13,10 +20,7 @@
 #   define HC_FREE(ptr) free(ptr)
 #endif
 
-#include <string.h>
-#include <stdlib.h>
-#include <stdint.h>
-#include <stdbool.h>
+/* Types definitions */
 
 enum hc_retcode_array {
     HC_ARRAY_ERROR_OUT_OF_BOUNDS    = -2,
@@ -26,11 +30,13 @@ enum hc_retcode_array {
 };
 
 typedef struct hc_array_t {
-    void *data;         // Pointer to vector elements
-    size_t count;        // Number of elements currently in the vector
-    size_t capacity;    // Total vector capacity (allocated space)
-    size_t elem_size;   // Size of an element (in bytes)
+    void *data;             // Pointer to vector elements
+    size_t count;           // Number of elements currently in the vector
+    size_t capacity;        // Total vector capacity (allocated space)
+    size_t elem_size;       // Size of an element (in bytes)
 } hc_array_t;
+
+/* Function declarations */
 
 hc_array_t hc_create_array(size_t capacity, size_t elem_size);
 void hc_destroy_vector(hc_array_t* vec);

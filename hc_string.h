@@ -7,6 +7,8 @@
 #include <stdbool.h>
 #include <stdarg.h>
 
+/* Macros and defintions */
+
 #ifndef HC_MALLOC
 #   define HC_MALLOC(sz) malloc(sz)
 #endif
@@ -18,6 +20,8 @@
 #ifndef HC_FREE
 #   define HC_FREE(ptr) free(ptr)
 #endif
+
+/* Types definitions */
 
 enum hc_retcode_array {
     HC_STRING_ERROR_OUT_OF_MEMORY   = -3,
@@ -31,6 +35,8 @@ typedef struct {
     size_t length;
     size_t capacity;
 } hc_string_t;
+
+/* Function declarations */
 
 hc_string_t hc_create_string(const char* str);
 hc_string_t hc_create_string_with_char(char c, size_t count);
