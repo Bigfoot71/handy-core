@@ -44,7 +44,7 @@ bool hc_starts_with_string(const hc_string_t* str, const char *prefix);
 bool hc_is_empty_string(const hc_string_t* str);
 int hc_substring_string(hc_string_t *str, size_t start, size_t length);
 int hc_append_char_string(hc_string_t* str, char c);
-bool hc_cmp_string(const hc_string_t* a, const hc_string_t* b);
+bool hc_compare_string(const hc_string_t* a, const hc_string_t* b);
 
 #endif // HC_STRING_H
 
@@ -236,7 +236,7 @@ int hc_append_char_string(hc_string_t* str, char c)
     return HC_STRING_SUCCESS;
 }
 
-bool hc_cmp_string(const hc_string_t* a, const hc_string_t* b)
+bool hc_compare_string(const hc_string_t* a, const hc_string_t* b)
 {
     if (a->length != b->length) return false;
     return !strncmp(a->data, b->data, a->length);

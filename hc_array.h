@@ -52,7 +52,7 @@ int hc_push_at_array(hc_array_t* vec, size_t index, const void* element);
 int hc_pop_back_array(hc_array_t* vec, void* element);
 int hc_pop_front_array(hc_array_t* vec, void* element);
 int hc_pop_at_array(hc_array_t* vec, size_t index, void* element);
-bool hc_cmp_array(const hc_array_t* a, const hc_array_t* b);
+bool hc_compare_array(const hc_array_t* a, const hc_array_t* b);
 
 #endif // HC_ARRAY_H
 
@@ -400,7 +400,7 @@ int hc_pop_at_array(hc_array_t* vec, size_t index, void* element)
     return HC_ARRAY_SUCCESS;
 }
 
-bool hc_cmp_array(const hc_array_t* a, const hc_array_t* b)
+bool hc_compare_array(const hc_array_t* a, const hc_array_t* b)
 {
     if (a->count != b->count || a->elem_size != b->elem_size) {
         return false;
