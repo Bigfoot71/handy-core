@@ -181,6 +181,8 @@ int hc_insert_array(hc_array_t* vec, size_t index, const void* elements, size_t 
     size_t new_size = vec->count + count;
 
     if (new_size > vec->capacity) {
+        // Here we increase the capacity of the
+        // array to the nearest power of two
         if ((new_size & (new_size - 1)) == 0) {
             new_size <<= 1; // *= 2
         } else {
@@ -239,6 +241,8 @@ void* hc_at_array(hc_array_t* vec, size_t index)
 int hc_push_back_array(hc_array_t* vec, const void *element)
 {
     if (vec->count >= vec->capacity) {
+        // Here we increase the capacity of the
+        // array to the nearest power of two
         size_t new_size = vec->count + 1;
         if ((new_size & (new_size - 1)) == 0) {
             new_size <<= 1; // *= 2
@@ -268,6 +272,8 @@ int hc_push_back_array(hc_array_t* vec, const void *element)
 int hc_push_front_array(hc_array_t* vec, const void *element)
 {
     if (vec->count >= vec->capacity) {
+        // Here we increase the capacity of the
+        // array to the nearest power of two
         size_t new_size = vec->count + 1;
         if ((new_size & (new_size - 1)) == 0) {
             new_size <<= 1; // *= 2
@@ -309,6 +315,8 @@ int hc_push_at_array(hc_array_t* vec, size_t index, const void* element)
     }
 
     if (vec->count >= vec->capacity) {
+        // Here we increase the capacity of the
+        // array to the nearest power of two
         size_t new_size = vec->count + 1;
         if ((new_size & (new_size - 1)) == 0) {
             new_size <<= 1; // *= 2

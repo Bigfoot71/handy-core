@@ -214,6 +214,8 @@ int hc_append_char_string(hc_string_t* str, char c)
     }
 
     if (str->length + 1 >= str->capacity) {
+        // Here we increase the capacity of the
+        // string to the nearest power of two
         size_t new_capacity = str->capacity + 1;
         if ((new_capacity & (new_capacity - 1)) == 0) {
             new_capacity <<= 1; // *= 2
