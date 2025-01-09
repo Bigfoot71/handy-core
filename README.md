@@ -31,7 +31,7 @@ Here are the various modules included in Handy Core:
 ### Installation
 No specific installation is required. Simply copy the necessary header files into your project, then include them in your code using `#include`.
 
-Some headers with more complex functionality, such as `hc_string.h` or `hc_array.h`, may require defining `HC_STRING_IMPL` or `HC_ARRAY_IMPL`.
+Some headers with more complex functions, such as `hc_string.h` or `hc_array.h`, may require defining `HC_STRING_IMPL` or `HC_ARRAY_IMPL`.
 
 ### License
 Handy Core is distributed under the **MIT License**. You are free to use, modify, and distribute it, as long as the license notice is retained.
