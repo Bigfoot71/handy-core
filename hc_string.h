@@ -232,7 +232,8 @@ void hc_string_toupper(hc_string_t* str)
     }
 }
 
-int hc_string_replace(hc_string_t* str, const char* old_word, const char* new_word) {
+int hc_string_replace(hc_string_t* str, const char* old_word, const char* new_word)
+{
     if (!str || !str->data || str->length == 0) {
         return HC_STRING_ERROR_INVALID_DST;
     }
@@ -241,46 +242,50 @@ int hc_string_replace(hc_string_t* str, const char* old_word, const char* new_wo
         return HC_STRING_ERROR_INVALID_SRC;
     }
 
+    // Get the lengths of the old and new words
     int old_len = strlen(old_word);
     int new_len = strlen(new_word);
 
-    // Comptage des occurrences de old_word
+    // Count the occurrences of old_word in the input string
     int occurrences = 0;
     const char* ptr = str->data;
     while ((ptr = strstr(ptr, old_word)) != NULL) {
-        ptr += old_len;
-        occurrences++;
+        ptr += old_len;     // Move pointer past the current occurrence
+        occurrences++;      // Increment occurrence count
     }
 
-    // Calcul de la nouvelle taille
+    // Calculate the new string length based on the number of occurrences and word length differences
     size_t result_len = str->length + occurrences * (new_len - old_len);
 
-    // Création de la chaîne de résultat
-    hc_string_t result = hc_string_create(result_len + 1);  // +1 pour le caractère nul
+    // Create the result string with the calculated length (+1 for null terminator)
+    hc_string_t result = hc_string_create(result_len + 1);
+    result.length = result_len;
+
     if (result.data == NULL) {
         return HC_STRING_ERROR_OUT_OF_MEMORY;
     }
 
-    char* dst = result.data;
-    const char* src = str->data;
+    char* dst = result.data;        // Pointer to the destination (result string)
+    const char* src = str->data;    // Pointer to the source (input string)
 
-    // Remplissage de la chaîne résultat avec les remplacements
+    // Loop through the source string and copy characters or replace occurrences of old_word
     while (*src) {
+        // If we find the old_word, replace it with the new_word
         if (strncmp(src, old_word, old_len) == 0) {
-            strcpy(dst, new_word);
-            dst += new_len;
-            src += old_len;
+            strcpy(dst, new_word);  // Copy the new word into the result string
+            dst += new_len;         // Move the destination pointer forward by the length of the new word
+            src += old_len;         // Move the source pointer forward by the length of the old word
         } else {
-            *dst++ = *src++;
+            *dst++ = *src++;        // Otherwise, copy the current character as is
         }
     }
-    *dst = '\0';  // Terminer la chaîne
+    *dst = '\0';  // Null-terminate the result string
 
-    // Mettre à jour la structure d'origine
+    // Free the old string data and replace the original string with the result
     HC_FREE(str->data);
-    *str = result;  // Remplacer les données de str par celles de result
+    *str = result;
 
-    return HC_STRING_SUCCESS;
+    return HC_STRING_SUCCESS;  // Return success
 }
 
 int hc_string_trim(hc_string_t* str)
