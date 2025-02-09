@@ -62,25 +62,25 @@ typedef struct {
 
 /* Function declarations */
 
-hc_string_t hc_create_string(const char* str);
-hc_string_t hc_create_string_with_char(char c, size_t count);
-void hc_destroy_string(hc_string_t* str);
-hc_string_t hc_copy_string(const hc_string_t* src);
-int hc_concat_string(hc_string_t *dst, const char* src);
-int hc_concat_string_hc(hc_string_t *dst, const hc_string_t* src);
-hc_string_t hc_format_string(const char* format, ...);
-bool hc_ends_with_string(const hc_string_t* str, const char* suffix);
-bool hc_starts_with_string(const hc_string_t* str, const char *prefix);
-bool hc_is_empty_string(const hc_string_t* str);
-int hc_substring_string(hc_string_t *str, size_t start, size_t length);
-int hc_append_char_string(hc_string_t* str, char c);
-bool hc_compare_string(const hc_string_t* a, const hc_string_t* b);
+hc_string_t hc_string_create(const char* str);
+hc_string_t hc_string_create_with_char(char c, size_t count);
+void hc_string_destroy(hc_string_t* str);
+hc_string_t hc_string_copy(const hc_string_t* src);
+int hc_string_concat(hc_string_t *dst, const char* src);
+int hc_string_concat_hc(hc_string_t *dst, const hc_string_t* src);
+hc_string_t hc_string_format(const char* format, ...);
+bool hc_string_ends_with(const hc_string_t* str, const char* suffix);
+bool hc_string_starts_with(const hc_string_t* str, const char *prefix);
+bool hc_string_is_empty(const hc_string_t* str);
+int hc_string_substring(hc_string_t *str, size_t start, size_t length);
+int hc_string_append_char(hc_string_t* str, char c);
+bool hc_string_compare(const hc_string_t* a, const hc_string_t* b);
 
 #endif // HC_STRING_H
 
 #ifdef HC_STRING_IMPL
 
-hc_string_t hc_create_string(const char* str)
+hc_string_t hc_string_create(const char* str)
 {
     hc_string_t new_str = { 0 };
     if (str == NULL) return new_str;
@@ -97,7 +97,7 @@ hc_string_t hc_create_string(const char* str)
     return new_str;
 }
 
-hc_string_t hc_create_string_with_char(char c, size_t count)
+hc_string_t hc_string_create_with_char(char c, size_t count)
 {
     hc_string_t new_str = { 0 };
     if (count == 0) return new_str;
@@ -113,7 +113,7 @@ hc_string_t hc_create_string_with_char(char c, size_t count)
     return new_str;
 }
 
-void hc_destroy_string(hc_string_t* str)
+void hc_string_destroy(hc_string_t* str)
 {
     if (str && str->data) {
         HC_FREE(str->data);
@@ -123,16 +123,16 @@ void hc_destroy_string(hc_string_t* str)
     }
 }
 
-hc_string_t hc_copy_string(const hc_string_t* src)
+hc_string_t hc_string_copy(const hc_string_t* src)
 {
     if (!src || !src->data) {
-        return hc_create_string(NULL);
+        return hc_string_create(NULL);
     }
 
-    return hc_create_string(src->data);
+    return hc_string_create(src->data);
 }
 
-int hc_concat_string(hc_string_t *dst, const char* src)
+int hc_string_concat(hc_string_t *dst, const char* src)
 {
     if (!dst || !dst->data) {
         return HC_STRING_ERROR_INVALID_DST;
@@ -160,16 +160,16 @@ int hc_concat_string(hc_string_t *dst, const char* src)
     return HC_STRING_SUCCESS;
 }
 
-int hc_concat_string_hc(hc_string_t *dst, const hc_string_t* src)
+int hc_string_concat_hc(hc_string_t *dst, const hc_string_t* src)
 {
     if (!src) {
         return HC_STRING_ERROR_INVALID_SRC;
     }
 
-    return hc_concat_string(dst, src->data);
+    return hc_string_concat(dst, src->data);
 }
 
-hc_string_t hc_format_string(const char* format, ...)
+hc_string_t hc_string_format(const char* format, ...)
 {
     va_list args;
     va_start(args, format);
@@ -178,19 +178,19 @@ hc_string_t hc_format_string(const char* format, ...)
     va_end(args);
 
     char *buffer = (char *)HC_MALLOC(size);
-    if (!buffer) return hc_create_string(NULL);
+    if (!buffer) return hc_string_create(NULL);
 
     va_start(args, format);
     vsnprintf(buffer, size, format, args);
     va_end(args);
 
-    hc_string_t formatted_str = hc_create_string(buffer);
+    hc_string_t formatted_str = hc_string_create(buffer);
     HC_FREE(buffer);
 
     return formatted_str;
 }
 
-bool hc_ends_with_string(const hc_string_t* str, const char* suffix)
+bool hc_string_ends_with(const hc_string_t* str, const char* suffix)
 {
     if (!str || !str->data || !suffix) return false;
 
@@ -200,7 +200,7 @@ bool hc_ends_with_string(const hc_string_t* str, const char* suffix)
     return strcmp(str->data + str->length - suffix_length, suffix) == 0;
 }
 
-bool hc_starts_with_string(const hc_string_t* str, const char *prefix)
+bool hc_string_starts_with(const hc_string_t* str, const char *prefix)
 {
     if (!str || !str->data || !prefix) return false;
 
@@ -210,12 +210,12 @@ bool hc_starts_with_string(const hc_string_t* str, const char *prefix)
     return strncmp(str->data, prefix, prefix_length) == 0;
 }
 
-bool hc_is_empty_string(const hc_string_t* str)
+bool hc_string_is_empty(const hc_string_t* str)
 {
     return !str || !str->data || str->length == 0;
 }
 
-int hc_substring_string(hc_string_t *str, size_t start, size_t length)
+int hc_string_substring(hc_string_t *str, size_t start, size_t length)
 {
     if (!str || !str->data || start >= str->length) {
         return HC_STRING_ERROR_INVALID_DST;
@@ -231,7 +231,7 @@ int hc_substring_string(hc_string_t *str, size_t start, size_t length)
     return HC_STRING_SUCCESS;
 }
 
-int hc_append_char_string(hc_string_t* str, char c)
+int hc_string_append_char(hc_string_t* str, char c)
 {
     if (!str || !str->data) {
         return HC_STRING_ERROR_INVALID_DST;
@@ -268,7 +268,7 @@ int hc_append_char_string(hc_string_t* str, char c)
     return HC_STRING_SUCCESS;
 }
 
-bool hc_compare_string(const hc_string_t* a, const hc_string_t* b)
+bool hc_string_compare(const hc_string_t* a, const hc_string_t* b)
 {
     if (a->length != b->length) return false;
     return !strncmp(a->data, b->data, a->length);

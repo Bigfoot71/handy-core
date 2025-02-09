@@ -285,7 +285,7 @@ hc_nearest_po2_u64(uint64_t x)
 /* 2D Vector function definitions */
 
 HCSAPI void
-hc_zero_vec2(hc_vec2_t dst)
+hc_vec2_zero(hc_vec2_t dst)
 {
     for (int_fast8_t i = 0; i < 2; i++) {
         dst[i] = 0;
@@ -293,19 +293,19 @@ hc_zero_vec2(hc_vec2_t dst)
 }
 
 HCSAPI void
-hc_one_vec2(hc_vec2_t dst, float v)
+hc_vec2_one(hc_vec2_t dst, float v)
 {
     dst[0] = dst[1] = v;
 }
 
 HCSAPI void
-hc_set_vec2(hc_vec2_t dst, float x, float y)
+hc_vec2_set(hc_vec2_t dst, float x, float y)
 {
     dst[0] = x, dst[1] = y;
 }
 
 HCSAPI void
-hc_copy_vec2(hc_vec2_ptr_t HC_RESTRICT dst, const hc_vec2_ptr_t HC_RESTRICT src)
+hc_vec2_copy(hc_vec2_ptr_t HC_RESTRICT dst, const hc_vec2_ptr_t HC_RESTRICT src)
 {
     for (int_fast8_t i = 0; i < 2; i++) {
         dst[i] = src[i];
@@ -313,7 +313,7 @@ hc_copy_vec2(hc_vec2_ptr_t HC_RESTRICT dst, const hc_vec2_ptr_t HC_RESTRICT src)
 }
 
 HCSAPI void
-hc_swap_vec2(hc_vec2_ptr_t HC_RESTRICT a, hc_vec2_ptr_t HC_RESTRICT b)
+hc_vec2_swap(hc_vec2_ptr_t HC_RESTRICT a, hc_vec2_ptr_t HC_RESTRICT b)
 {
     for (int_fast8_t i = 0; i < 2; i++) {
         float tmp = a[i];
@@ -323,7 +323,7 @@ hc_swap_vec2(hc_vec2_ptr_t HC_RESTRICT a, hc_vec2_ptr_t HC_RESTRICT b)
 }
 
 HCSAPI void
-hc_neg_vec2(hc_vec2_t dst, const hc_vec2_t v)
+hc_vec2_neg(hc_vec2_t dst, const hc_vec2_t v)
 {
     for (int_fast8_t i = 0; i < 2; i++) {
         dst[i] = -v[i];
@@ -331,7 +331,7 @@ hc_neg_vec2(hc_vec2_t dst, const hc_vec2_t v)
 }
 
 HCSAPI void
-hc_neg_vec2_r(hc_vec2_ptr_t HC_RESTRICT dst, const hc_vec2_t v)
+hc_vec2_neg_r(hc_vec2_ptr_t HC_RESTRICT dst, const hc_vec2_t v)
 {
     for (int_fast8_t i = 0; i < 2; i++) {
         dst[i] = -v[i];
@@ -339,7 +339,7 @@ hc_neg_vec2_r(hc_vec2_ptr_t HC_RESTRICT dst, const hc_vec2_t v)
 }
 
 HCSAPI void
-hc_add_vec2(hc_vec2_t dst, const hc_vec2_t v1, const hc_vec2_t v2)
+hc_vec2_add(hc_vec2_t dst, const hc_vec2_t v1, const hc_vec2_t v2)
 {
     for (int_fast8_t i = 0; i < 2; i++) {
         dst[i] = v1[i] + v2[i];
@@ -347,7 +347,7 @@ hc_add_vec2(hc_vec2_t dst, const hc_vec2_t v1, const hc_vec2_t v2)
 }
 
 HCSAPI void
-hc_add_vec2_r(hc_vec2_ptr_t HC_RESTRICT dst, const hc_vec2_t v1, const hc_vec2_t v2)
+hc_vec2_add_r(hc_vec2_ptr_t HC_RESTRICT dst, const hc_vec2_t v1, const hc_vec2_t v2)
 {
     for (int_fast8_t i = 0; i < 2; i++) {
         dst[i] = v1[i] + v2[i];
@@ -355,7 +355,7 @@ hc_add_vec2_r(hc_vec2_ptr_t HC_RESTRICT dst, const hc_vec2_t v1, const hc_vec2_t
 }
 
 HCSAPI void
-hc_sub_vec2(hc_vec2_t dst, const hc_vec2_t v1, const hc_vec2_t v2)
+hc_vec2_sub(hc_vec2_t dst, const hc_vec2_t v1, const hc_vec2_t v2)
 {
     for (int_fast8_t i = 0; i < 2; i++) {
         dst[i] = v1[i] - v2[i];
@@ -363,7 +363,7 @@ hc_sub_vec2(hc_vec2_t dst, const hc_vec2_t v1, const hc_vec2_t v2)
 }
 
 HCSAPI void
-hc_sub_vec2_r(hc_vec2_ptr_t HC_RESTRICT dst, const hc_vec2_t v1, const hc_vec2_t v2)
+hc_vec2_sub_r(hc_vec2_ptr_t HC_RESTRICT dst, const hc_vec2_t v1, const hc_vec2_t v2)
 {
     for (int_fast8_t i = 0; i < 2; i++) {
         dst[i] = v1[i] - v2[i];
@@ -371,7 +371,7 @@ hc_sub_vec2_r(hc_vec2_ptr_t HC_RESTRICT dst, const hc_vec2_t v1, const hc_vec2_t
 }
 
 HCSAPI void
-hc_mul_vec2(hc_vec2_t dst, const hc_vec2_t v1, const hc_vec2_t v2)
+hc_vec2_mul(hc_vec2_t dst, const hc_vec2_t v1, const hc_vec2_t v2)
 {
     for (int_fast8_t i = 0; i < 2; i++) {
         dst[i] = v1[i] * v2[i];
@@ -379,7 +379,7 @@ hc_mul_vec2(hc_vec2_t dst, const hc_vec2_t v1, const hc_vec2_t v2)
 }
 
 HCSAPI void
-hc_mul_vec2_r(hc_vec2_ptr_t HC_RESTRICT dst, const hc_vec2_t v1, const hc_vec2_t v2)
+hc_vec2_mul_r(hc_vec2_ptr_t HC_RESTRICT dst, const hc_vec2_t v1, const hc_vec2_t v2)
 {
     for (int_fast8_t i = 0; i < 2; i++) {
         dst[i] = v1[i] * v2[i];
@@ -387,7 +387,7 @@ hc_mul_vec2_r(hc_vec2_ptr_t HC_RESTRICT dst, const hc_vec2_t v1, const hc_vec2_t
 }
 
 HCSAPI void
-hc_div_vec2(hc_vec2_t dst, const hc_vec2_t v1, const hc_vec2_t v2)
+hc_vec2_div(hc_vec2_t dst, const hc_vec2_t v1, const hc_vec2_t v2)
 {
     for (int_fast8_t i = 0; i < 2; i++) {
         dst[i] = v1[i]/v2[i];
@@ -395,7 +395,7 @@ hc_div_vec2(hc_vec2_t dst, const hc_vec2_t v1, const hc_vec2_t v2)
 }
 
 HCSAPI void
-hc_div_vec2_r(hc_vec2_ptr_t HC_RESTRICT dst, const hc_vec2_t v1, const hc_vec2_t v2)
+hc_vec2_div_r(hc_vec2_ptr_t HC_RESTRICT dst, const hc_vec2_t v1, const hc_vec2_t v2)
 {
     for (int_fast8_t i = 0; i < 2; i++) {
         dst[i] = v1[i]/v2[i];
@@ -403,7 +403,7 @@ hc_div_vec2_r(hc_vec2_ptr_t HC_RESTRICT dst, const hc_vec2_t v1, const hc_vec2_t
 }
 
 HCSAPI void
-hc_offset_vec2(hc_vec2_t dst, const hc_vec2_t v, float scalar)
+hc_vec2_offset(hc_vec2_t dst, const hc_vec2_t v, float scalar)
 {
     for (int_fast8_t i = 0; i < 2; i++) {
         dst[i] = v[i] + scalar;
@@ -411,7 +411,7 @@ hc_offset_vec2(hc_vec2_t dst, const hc_vec2_t v, float scalar)
 }
 
 HCSAPI void
-hc_offset_vec2_r(hc_vec2_ptr_t HC_RESTRICT dst, const hc_vec2_t v, float scalar)
+hc_vec2_offset_r(hc_vec2_ptr_t HC_RESTRICT dst, const hc_vec2_t v, float scalar)
 {
     for (int_fast8_t i = 0; i < 2; i++) {
         dst[i] = v[i] + scalar;
@@ -419,7 +419,7 @@ hc_offset_vec2_r(hc_vec2_ptr_t HC_RESTRICT dst, const hc_vec2_t v, float scalar)
 }
 
 HCSAPI void
-hc_scale_vec2(hc_vec2_t dst, const hc_vec2_t v, float scalar)
+hc_vec2_scale(hc_vec2_t dst, const hc_vec2_t v, float scalar)
 {
     for (int_fast8_t i = 0; i < 2; i++) {
         dst[i] = v[i]*scalar;
@@ -427,7 +427,7 @@ hc_scale_vec2(hc_vec2_t dst, const hc_vec2_t v, float scalar)
 }
 
 HCSAPI void
-hc_scale_vec2_r(hc_vec2_ptr_t HC_RESTRICT dst, const hc_vec2_t v, float scalar)
+hc_vec2_scale_r(hc_vec2_ptr_t HC_RESTRICT dst, const hc_vec2_t v, float scalar)
 {
     for (int_fast8_t i = 0; i < 2; i++) {
         dst[i] = v[i]*scalar;
@@ -435,7 +435,7 @@ hc_scale_vec2_r(hc_vec2_ptr_t HC_RESTRICT dst, const hc_vec2_t v, float scalar)
 }
 
 HCSAPI void
-hc_normalize_vec2(hc_vec2_t dst, const hc_vec2_t v)
+hc_vec2_normalize(hc_vec2_t dst, const hc_vec2_t v)
 {
     float length_sq = v[0] * v[0] + v[1] * v[1];
     if (length_sq == 0.0f) return;
@@ -447,7 +447,7 @@ hc_normalize_vec2(hc_vec2_t dst, const hc_vec2_t v)
 }
 
 HCSAPI void
-hc_normalize_vec2_r(hc_vec2_ptr_t HC_RESTRICT dst, const hc_vec2_t v)
+hc_vec2_normalize_r(hc_vec2_ptr_t HC_RESTRICT dst, const hc_vec2_t v)
 {
     float length_sq = v[0] * v[0] + v[1] * v[1];
     if (length_sq == 0.0f) return;
@@ -459,7 +459,7 @@ hc_normalize_vec2_r(hc_vec2_ptr_t HC_RESTRICT dst, const hc_vec2_t v)
 }
 
 HCSAPI float
-hc_length_vec2(const hc_vec2_t v)
+hc_vec2_length(const hc_vec2_t v)
 {
     return sqrtf(v[0] * v[0] + v[1] * v[1]);
 }
@@ -471,13 +471,13 @@ hc_length_sq_vec2(const hc_vec2_t v)
 }
 
 HCSAPI float
-hc_dot_vec2(const hc_vec2_t v1, const hc_vec2_t v2)
+hc_vec2_dot(const hc_vec2_t v1, const hc_vec2_t v2)
 {
     return v1[0] * v2[0] + v1[1] * v2[1];
 }
 
 HCSAPI float
-hc_distance_vec2(const hc_vec2_t v1, const hc_vec2_t v2)
+hc_vec2_distance(const hc_vec2_t v1, const hc_vec2_t v2)
 {
     hc_vec2_t dt = {
         v1[0] - v2[0],
@@ -502,7 +502,7 @@ hc_distance_sq_vec2(const hc_vec2_t v1, const hc_vec2_t v2)
 }
 
 HCSAPI void
-hc_direction_vec2(hc_vec2_t dst, const hc_vec2_t v1, const hc_vec2_t v2)
+hc_vec2_direction(hc_vec2_t dst, const hc_vec2_t v1, const hc_vec2_t v2)
 {
     hc_vec2_t tmp;
     float lengthSq = 0.0f;
@@ -526,7 +526,7 @@ hc_direction_vec2(hc_vec2_t dst, const hc_vec2_t v1, const hc_vec2_t v2)
 }
 
 HCSAPI void
-hc_direction_vec2_r(hc_vec2_ptr_t HC_RESTRICT dst, const hc_vec2_t v1, const hc_vec2_t v2)
+hc_vec2_direction_r(hc_vec2_ptr_t HC_RESTRICT dst, const hc_vec2_t v1, const hc_vec2_t v2)
 {
     float lengthSq = 0.0f;
 
@@ -549,7 +549,7 @@ hc_direction_vec2_r(hc_vec2_ptr_t HC_RESTRICT dst, const hc_vec2_t v1, const hc_
 }
 
 HCSAPI void
-hc_lerp_vec2(hc_vec2_t dst, const hc_vec2_t v1, const hc_vec2_t v2, float t)
+hc_vec2_lerp(hc_vec2_t dst, const hc_vec2_t v1, const hc_vec2_t v2, float t)
 {
     for (int_fast8_t i = 0; i < 2; i++) {
         dst[i] = v1[i] + t*(v2[i]-v1[i]);
@@ -557,7 +557,7 @@ hc_lerp_vec2(hc_vec2_t dst, const hc_vec2_t v1, const hc_vec2_t v2, float t)
 }
 
 HCSAPI void
-hc_lerp_vec2_r(hc_vec2_ptr_t HC_RESTRICT dst, const hc_vec2_t v1, const hc_vec2_t v2, float t)
+hc_vec2_lerp_r(hc_vec2_ptr_t HC_RESTRICT dst, const hc_vec2_t v1, const hc_vec2_t v2, float t)
 {
     for (int_fast8_t i = 0; i < 2; i++) {
         dst[i] = v1[i] + t*(v2[i]-v1[i]);
@@ -565,7 +565,7 @@ hc_lerp_vec2_r(hc_vec2_ptr_t HC_RESTRICT dst, const hc_vec2_t v1, const hc_vec2_
 }
 
 HCSAPI void
-hc_barysmooth_vec2(hc_vec2_t dst, const hc_vec2_t v1, const hc_vec2_t v2, const hc_vec2_t v3, float w1, float w2, float w3)
+hc_vec2_barysmooth(hc_vec2_t dst, const hc_vec2_t v1, const hc_vec2_t v2, const hc_vec2_t v3, float w1, float w2, float w3)
 {
     for (int_fast8_t i = 0; i < 2; i++) {
         dst[i] = w1*v1[i] + w2*v2[i] + w3*v3[i];
@@ -573,7 +573,7 @@ hc_barysmooth_vec2(hc_vec2_t dst, const hc_vec2_t v1, const hc_vec2_t v2, const 
 }
 
 HCSAPI void
-hc_barysmooth_vec2_r(hc_vec2_ptr_t HC_RESTRICT dst, const hc_vec2_t v1, const hc_vec2_t v2, const hc_vec2_t v3, float w1, float w2, float w3)
+hc_vec2_barysmooth_r(hc_vec2_ptr_t HC_RESTRICT dst, const hc_vec2_t v1, const hc_vec2_t v2, const hc_vec2_t v3, float w1, float w2, float w3)
 {
     for (int_fast8_t i = 0; i < 2; i++) {
         dst[i] = w1*v1[i] + w2*v2[i] + w3*v3[i];
@@ -581,7 +581,7 @@ hc_barysmooth_vec2_r(hc_vec2_ptr_t HC_RESTRICT dst, const hc_vec2_t v1, const hc
 }
 
 HCSAPI void
-hc_barysmooth_vec2_v(hc_vec2_t dst, const hc_vec2_t v1, const hc_vec2_t v2, const hc_vec2_t v3, const hc_vec3_t w)
+hc_vec2_barysmooth_v(hc_vec2_t dst, const hc_vec2_t v1, const hc_vec2_t v2, const hc_vec2_t v3, const hc_vec3_t w)
 {
     for (int_fast8_t i = 0; i < 2; i++) {
         dst[i] = w[0] * v1[i] + w[1] * v2[i] + w[2] * v3[i];
@@ -589,7 +589,7 @@ hc_barysmooth_vec2_v(hc_vec2_t dst, const hc_vec2_t v1, const hc_vec2_t v2, cons
 }
 
 HCSAPI void
-hc_barysmooth_vec2_vr(hc_vec2_ptr_t HC_RESTRICT dst, const hc_vec2_t v1, const hc_vec2_t v2, const hc_vec2_t v3, const hc_vec3_t w)
+hc_vec2_barysmooth_vr(hc_vec2_ptr_t HC_RESTRICT dst, const hc_vec2_t v1, const hc_vec2_t v2, const hc_vec2_t v3, const hc_vec3_t w)
 {
     for (int_fast8_t i = 0; i < 2; i++) {
         dst[i] = w[0] * v1[i] + w[1] * v2[i] + w[2] * v3[i];
@@ -597,7 +597,7 @@ hc_barysmooth_vec2_vr(hc_vec2_ptr_t HC_RESTRICT dst, const hc_vec2_t v1, const h
 }
 
 HCSAPI void
-hc_baryflat_vec2(hc_vec4_t dst, const hc_vec4_t v1, const hc_vec4_t v2, const hc_vec4_t v3, float w1, float w2, float w3)
+hc_vec2_baryflat(hc_vec4_t dst, const hc_vec4_t v1, const hc_vec4_t v2, const hc_vec4_t v3, float w1, float w2, float w3)
 {
     // Find the maximum weight
     float max_w = w1;
@@ -621,7 +621,7 @@ hc_baryflat_vec2(hc_vec4_t dst, const hc_vec4_t v1, const hc_vec4_t v2, const hc
 }
 
 HCSAPI void
-hc_baryflat_vec2_r(hc_vec4_ptr_t HC_RESTRICT dst, const hc_vec4_t v1, const hc_vec4_t v2, const hc_vec4_t v3, float w1, float w2, float w3)
+hc_vec2_baryflat_r(hc_vec4_ptr_t HC_RESTRICT dst, const hc_vec4_t v1, const hc_vec4_t v2, const hc_vec4_t v3, float w1, float w2, float w3)
 {
     // Find the maximum weight
     float max_w = w1;
@@ -645,7 +645,7 @@ hc_baryflat_vec2_r(hc_vec4_ptr_t HC_RESTRICT dst, const hc_vec4_t v1, const hc_v
 }
 
 HCSAPI void
-hc_baryflat_vec2_v(hc_vec4_t dst, const hc_vec4_t v1, const hc_vec4_t v2, const hc_vec4_t v3, const hc_vec3_t w)
+hc_vec2_baryflat_v(hc_vec4_t dst, const hc_vec4_t v1, const hc_vec4_t v2, const hc_vec4_t v3, const hc_vec3_t w)
 {
     // Find the maximum weight
     float max_w = w[0];
@@ -669,7 +669,7 @@ hc_baryflat_vec2_v(hc_vec4_t dst, const hc_vec4_t v1, const hc_vec4_t v2, const 
 }
 
 HCSAPI void
-hc_baryflat_vec2_vr(hc_vec4_ptr_t HC_RESTRICT dst, const hc_vec4_t v1, const hc_vec4_t v2, const hc_vec4_t v3, const hc_vec3_t w)
+hc_vec2_baryflat_vr(hc_vec4_ptr_t HC_RESTRICT dst, const hc_vec4_t v1, const hc_vec4_t v2, const hc_vec4_t v3, const hc_vec3_t w)
 {
     // Find the maximum weight
     float max_w = w[0];
@@ -693,7 +693,7 @@ hc_baryflat_vec2_vr(hc_vec4_ptr_t HC_RESTRICT dst, const hc_vec4_t v1, const hc_
 }
 
 HCSAPI void
-hc_transform_vec2(hc_vec2_t dst, const hc_vec2_t v, const hc_mat4_t mat)
+hc_vec2_transform(hc_vec2_t dst, const hc_vec2_t v, const hc_mat4_t mat)
 {
     hc_vec2_t tmp = {
         mat[0] * v[0] + mat[4] * v[1] + mat[12],
@@ -706,14 +706,14 @@ hc_transform_vec2(hc_vec2_t dst, const hc_vec2_t v, const hc_mat4_t mat)
 }
 
 HCSAPI void
-hc_transform_vec2_r(hc_vec2_ptr_t HC_RESTRICT dst, const hc_vec2_t v, const hc_mat4_t mat)
+hc_vec2_transform_r(hc_vec2_ptr_t HC_RESTRICT dst, const hc_vec2_t v, const hc_mat4_t mat)
 {
     dst[0] = mat[0] * v[0] + mat[4] * v[1] + mat[12];
     dst[1] = mat[1] * v[0] + mat[5] * v[1] + mat[13];
 }
 
 HCSAPI void
-hc_transform_vec2_wt(hc_vec2_t dst, const hc_vec2_t v, float w_translation, const hc_mat4_t mat)
+hc_vec2_transform_wt(hc_vec2_t dst, const hc_vec2_t v, float w_translation, const hc_mat4_t mat)
 {
     hc_vec2_t tmp = {
         mat[0] * v[0] + mat[4] * v[1] + w_translation * mat[12],
@@ -726,7 +726,7 @@ hc_transform_vec2_wt(hc_vec2_t dst, const hc_vec2_t v, float w_translation, cons
 }
 
 HCSAPI void
-hc_transform_vec2_wtr(hc_vec2_ptr_t HC_RESTRICT dst, const hc_vec2_t v, float w_translation, const hc_mat4_t mat)
+hc_vec2_transform_wtr(hc_vec2_ptr_t HC_RESTRICT dst, const hc_vec2_t v, float w_translation, const hc_mat4_t mat)
 {
     dst[0] = mat[0] * v[0] + mat[4] * v[1] + w_translation*mat[12];
     dst[1] = mat[1] * v[0] + mat[5] * v[1] + w_translation*mat[13];
@@ -735,7 +735,7 @@ hc_transform_vec2_wtr(hc_vec2_ptr_t HC_RESTRICT dst, const hc_vec2_t v, float w_
 /* 3D Vector function definitions */
 
 HCSAPI void
-hc_zero_vec3(hc_vec3_t dst)
+hc_vec3_zero(hc_vec3_t dst)
 {
     for (int_fast8_t i = 0; i < 3; i++) {
         dst[i] = 0;
@@ -743,19 +743,19 @@ hc_zero_vec3(hc_vec3_t dst)
 }
 
 HCSAPI void
-hc_one_vec3(hc_vec3_t dst, float v)
+hc_vec3_one(hc_vec3_t dst, float v)
 {
     dst[0] = dst[1] = dst[2] = v;
 }
 
 HCSAPI void
-hc_set_vec3(hc_vec3_t dst, float x, float y, float z)
+hc_vec3_set(hc_vec3_t dst, float x, float y, float z)
 {
     dst[0] = x, dst[1] = y, dst[2] = z;
 }
 
 HCSAPI void
-hc_copy_vec3(hc_vec3_ptr_t HC_RESTRICT dst, const hc_vec3_ptr_t HC_RESTRICT src)
+hc_vec3_copy(hc_vec3_ptr_t HC_RESTRICT dst, const hc_vec3_ptr_t HC_RESTRICT src)
 {
     for (int_fast8_t i = 0; i < 3; i++) {
         dst[i] = src[i];
@@ -763,7 +763,7 @@ hc_copy_vec3(hc_vec3_ptr_t HC_RESTRICT dst, const hc_vec3_ptr_t HC_RESTRICT src)
 }
 
 HCSAPI void
-hc_swap_vec3(hc_vec3_ptr_t HC_RESTRICT a, hc_vec3_ptr_t HC_RESTRICT b)
+hc_vec3_swap(hc_vec3_ptr_t HC_RESTRICT a, hc_vec3_ptr_t HC_RESTRICT b)
 {
 #   ifdef _OPENMP
 #       pragma omp simd
@@ -776,7 +776,7 @@ hc_swap_vec3(hc_vec3_ptr_t HC_RESTRICT a, hc_vec3_ptr_t HC_RESTRICT b)
 }
 
 HCSAPI void
-hc_neg_vec3(hc_vec3_t dst, const hc_vec3_t v)
+hc_vec3_neg(hc_vec3_t dst, const hc_vec3_t v)
 {
 #   ifdef _OPENMP
 #       pragma omp simd
@@ -787,7 +787,7 @@ hc_neg_vec3(hc_vec3_t dst, const hc_vec3_t v)
 }
 
 HCSAPI void
-hc_neg_vec3_r(hc_vec3_ptr_t HC_RESTRICT dst, const hc_vec3_t v)
+hc_vec3_neg_r(hc_vec3_ptr_t HC_RESTRICT dst, const hc_vec3_t v)
 {
 #   ifdef _OPENMP
 #       pragma omp simd
@@ -798,7 +798,7 @@ hc_neg_vec3_r(hc_vec3_ptr_t HC_RESTRICT dst, const hc_vec3_t v)
 }
 
 HCSAPI void
-hc_add_vec3(hc_vec3_t dst, const hc_vec3_t v1, const hc_vec3_t v2)
+hc_vec3_add(hc_vec3_t dst, const hc_vec3_t v1, const hc_vec3_t v2)
 {
 #   ifdef _OPENMP
 #       pragma omp simd
@@ -809,7 +809,7 @@ hc_add_vec3(hc_vec3_t dst, const hc_vec3_t v1, const hc_vec3_t v2)
 }
 
 HCSAPI void
-hc_add_vec3_r(hc_vec3_ptr_t HC_RESTRICT dst, const hc_vec3_t v1, const hc_vec3_t v2)
+hc_vec3_add_r(hc_vec3_ptr_t HC_RESTRICT dst, const hc_vec3_t v1, const hc_vec3_t v2)
 {
 #   ifdef _OPENMP
 #       pragma omp simd
@@ -820,7 +820,7 @@ hc_add_vec3_r(hc_vec3_ptr_t HC_RESTRICT dst, const hc_vec3_t v1, const hc_vec3_t
 }
 
 HCSAPI void
-hc_sub_vec3(hc_vec3_t dst, const hc_vec3_t v1, const hc_vec3_t v2)
+hc_vec3_sub(hc_vec3_t dst, const hc_vec3_t v1, const hc_vec3_t v2)
 {
 #   ifdef _OPENMP
 #       pragma omp simd
@@ -831,7 +831,7 @@ hc_sub_vec3(hc_vec3_t dst, const hc_vec3_t v1, const hc_vec3_t v2)
 }
 
 HCSAPI void
-hc_sub_vec3_r(hc_vec3_ptr_t HC_RESTRICT dst, const hc_vec3_t v1, const hc_vec3_t v2)
+hc_vec3_sub_r(hc_vec3_ptr_t HC_RESTRICT dst, const hc_vec3_t v1, const hc_vec3_t v2)
 {
 #   ifdef _OPENMP
 #       pragma omp simd
@@ -842,7 +842,7 @@ hc_sub_vec3_r(hc_vec3_ptr_t HC_RESTRICT dst, const hc_vec3_t v1, const hc_vec3_t
 }
 
 HCSAPI void
-hc_mul_vec3(hc_vec3_t dst, const hc_vec3_t v1, const hc_vec3_t v2)
+hc_vec3_mul(hc_vec3_t dst, const hc_vec3_t v1, const hc_vec3_t v2)
 {
 #   ifdef _OPENMP
 #       pragma omp simd
@@ -853,7 +853,7 @@ hc_mul_vec3(hc_vec3_t dst, const hc_vec3_t v1, const hc_vec3_t v2)
 }
 
 HCSAPI void
-hc_mul_vec3_r(hc_vec3_ptr_t HC_RESTRICT dst, const hc_vec3_t v1, const hc_vec3_t v2)
+hc_vec3_mul_r(hc_vec3_ptr_t HC_RESTRICT dst, const hc_vec3_t v1, const hc_vec3_t v2)
 {
 #   ifdef _OPENMP
 #       pragma omp simd
@@ -864,7 +864,7 @@ hc_mul_vec3_r(hc_vec3_ptr_t HC_RESTRICT dst, const hc_vec3_t v1, const hc_vec3_t
 }
 
 HCSAPI void
-hc_div_vec3(hc_vec3_t dst, const hc_vec3_t v1, const hc_vec3_t v2)
+hc_vec3_div(hc_vec3_t dst, const hc_vec3_t v1, const hc_vec3_t v2)
 {
 #   ifdef _OPENMP
 #       pragma omp simd
@@ -875,7 +875,7 @@ hc_div_vec3(hc_vec3_t dst, const hc_vec3_t v1, const hc_vec3_t v2)
 }
 
 HCSAPI void
-hc_div_vec3_r(hc_vec3_ptr_t HC_RESTRICT dst, const hc_vec3_t v1, const hc_vec3_t v2)
+hc_vec3_div_r(hc_vec3_ptr_t HC_RESTRICT dst, const hc_vec3_t v1, const hc_vec3_t v2)
 {
 #   ifdef _OPENMP
 #       pragma omp simd
@@ -886,7 +886,7 @@ hc_div_vec3_r(hc_vec3_ptr_t HC_RESTRICT dst, const hc_vec3_t v1, const hc_vec3_t
 }
 
 HCSAPI void
-hc_offset_vec3(hc_vec3_t dst, const hc_vec3_t v, float scalar)
+hc_vec3_offset(hc_vec3_t dst, const hc_vec3_t v, float scalar)
 {
 #   ifdef _OPENMP
 #       pragma omp simd
@@ -897,7 +897,7 @@ hc_offset_vec3(hc_vec3_t dst, const hc_vec3_t v, float scalar)
 }
 
 HCSAPI void
-hc_offset_vec3_r(hc_vec3_ptr_t HC_RESTRICT dst, const hc_vec3_t v, float scalar)
+hc_vec3_offset_r(hc_vec3_ptr_t HC_RESTRICT dst, const hc_vec3_t v, float scalar)
 {
 #   ifdef _OPENMP
 #       pragma omp simd
@@ -908,7 +908,7 @@ hc_offset_vec3_r(hc_vec3_ptr_t HC_RESTRICT dst, const hc_vec3_t v, float scalar)
 }
 
 HCSAPI void
-hc_scale_vec3(hc_vec3_t dst, const hc_vec3_t v, float scalar)
+hc_vec3_scale(hc_vec3_t dst, const hc_vec3_t v, float scalar)
 {
 #   ifdef _OPENMP
 #       pragma omp simd
@@ -919,7 +919,7 @@ hc_scale_vec3(hc_vec3_t dst, const hc_vec3_t v, float scalar)
 }
 
 HCSAPI void
-hc_scale_vec3_r(hc_vec3_ptr_t HC_RESTRICT dst, const hc_vec3_t v, float scalar)
+hc_vec3_scale_r(hc_vec3_ptr_t HC_RESTRICT dst, const hc_vec3_t v, float scalar)
 {
 #   ifdef _OPENMP
 #       pragma omp simd
@@ -930,7 +930,7 @@ hc_scale_vec3_r(hc_vec3_ptr_t HC_RESTRICT dst, const hc_vec3_t v, float scalar)
 }
 
 HCSAPI void
-hc_normalize_vec3(hc_vec3_t dst, const hc_vec3_t v)
+hc_vec3_normalize(hc_vec3_t dst, const hc_vec3_t v)
 {
     float length_sq = v[0] * v[0] + v[1] * v[1] + v[2] * v[2];
     if (length_sq == 0.0f) return;
@@ -946,7 +946,7 @@ hc_normalize_vec3(hc_vec3_t dst, const hc_vec3_t v)
 }
 
 HCSAPI void
-hc_normalize_vec3_r(hc_vec3_ptr_t HC_RESTRICT dst, const hc_vec3_t v)
+hc_vec3_normalize_r(hc_vec3_ptr_t HC_RESTRICT dst, const hc_vec3_t v)
 {
     float length_sq = v[0] * v[0] + v[1] * v[1] + v[2] * v[2];
     if (length_sq == 0.0f) return;
@@ -962,7 +962,7 @@ hc_normalize_vec3_r(hc_vec3_ptr_t HC_RESTRICT dst, const hc_vec3_t v)
 }
 
 HCSAPI float
-hc_length_vec3(const hc_vec3_t v)
+hc_vec3_length(const hc_vec3_t v)
 {
     return sqrtf(v[0] * v[0] + v[1] * v[1] + v[2] * v[2]);
 }
@@ -974,7 +974,7 @@ hc_length_sq_vec3(const hc_vec3_t v)
 }
 
 HCSAPI float
-hc_dot_vec3(const hc_vec3_t v1, const hc_vec3_t v2)
+hc_vec3_dot(const hc_vec3_t v1, const hc_vec3_t v2)
 {
 #ifdef _OPENMP
     float dotProduct = 0.0f;
@@ -989,7 +989,7 @@ hc_dot_vec3(const hc_vec3_t v1, const hc_vec3_t v2)
 }
 
 HCSAPI void
-hc_cross_vec3(hc_vec3_t dst, const hc_vec3_t v1, const hc_vec3_t v2)
+hc_vec3_cross(hc_vec3_t dst, const hc_vec3_t v1, const hc_vec3_t v2)
 {
     hc_vec3_t tmp = {
         v1[1] * v2[2] - v1[2] * v2[1],
@@ -1003,7 +1003,7 @@ hc_cross_vec3(hc_vec3_t dst, const hc_vec3_t v1, const hc_vec3_t v2)
 }
 
 HCSAPI void
-hc_cross_vec3_r(hc_vec3_ptr_t HC_RESTRICT dst, const hc_vec3_t v1, const hc_vec3_t v2)
+hc_vec3_cross_r(hc_vec3_ptr_t HC_RESTRICT dst, const hc_vec3_t v1, const hc_vec3_t v2)
 {
     dst[0] = v1[1] * v2[2] - v1[2] * v2[1];
     dst[1] = v1[2] * v2[0] - v1[0] * v2[2];
@@ -1011,7 +1011,7 @@ hc_cross_vec3_r(hc_vec3_ptr_t HC_RESTRICT dst, const hc_vec3_t v1, const hc_vec3
 }
 
 HCSAPI float
-hc_distance_vec3(const hc_vec3_t v1, const hc_vec3_t v2)
+hc_vec3_distance(const hc_vec3_t v1, const hc_vec3_t v2)
 {
     // NOTE: Here, the loop version adds a conditional branch, in doubt we keep it simple.
 
@@ -1047,7 +1047,7 @@ hc_distance_sq_vec3(const hc_vec3_t v1, const hc_vec3_t v2)
 }
 
 HCSAPI void
-hc_direction_vec3(hc_vec3_t dst, const hc_vec3_t v1, const hc_vec3_t v2)
+hc_vec3_direction(hc_vec3_t dst, const hc_vec3_t v1, const hc_vec3_t v2)
 {
     hc_vec3_t tmp;
     float lengthSq = 0.0f;
@@ -1071,7 +1071,7 @@ hc_direction_vec3(hc_vec3_t dst, const hc_vec3_t v1, const hc_vec3_t v2)
 }
 
 HCSAPI void
-hc_direction_vec3_r(hc_vec3_ptr_t HC_RESTRICT dst, const hc_vec3_t v1, const hc_vec3_t v2)
+hc_vec3_direction_r(hc_vec3_ptr_t HC_RESTRICT dst, const hc_vec3_t v1, const hc_vec3_t v2)
 {
     float lengthSq = 0.0f;
 
@@ -1094,7 +1094,7 @@ hc_direction_vec3_r(hc_vec3_ptr_t HC_RESTRICT dst, const hc_vec3_t v1, const hc_
 }
 
 HCSAPI void
-hc_lerp_vec3(hc_vec3_t dst, const hc_vec3_t v1, const hc_vec3_t v2, float t)
+hc_vec3_lerp(hc_vec3_t dst, const hc_vec3_t v1, const hc_vec3_t v2, float t)
 {
 #   ifdef _OPENMP
 #       pragma omp simd
@@ -1105,7 +1105,7 @@ hc_lerp_vec3(hc_vec3_t dst, const hc_vec3_t v1, const hc_vec3_t v2, float t)
 }
 
 HCSAPI void
-hc_lerp_vec3_r(hc_vec3_ptr_t HC_RESTRICT dst, const hc_vec3_t v1, const hc_vec3_t v2, float t)
+hc_vec3_lerp_r(hc_vec3_ptr_t HC_RESTRICT dst, const hc_vec3_t v1, const hc_vec3_t v2, float t)
 {
 #   ifdef _OPENMP
 #       pragma omp simd
@@ -1116,7 +1116,7 @@ hc_lerp_vec3_r(hc_vec3_ptr_t HC_RESTRICT dst, const hc_vec3_t v1, const hc_vec3_
 }
 
 HCSAPI void
-hc_barysmooth_vec3(hc_vec3_t dst, const hc_vec3_t v1, const hc_vec3_t v2, const hc_vec3_t v3, float w1, float w2, float w3)
+hc_vec3_barysmooth(hc_vec3_t dst, const hc_vec3_t v1, const hc_vec3_t v2, const hc_vec3_t v3, float w1, float w2, float w3)
 {
 #   ifdef _OPENMP
 #       pragma omp simd
@@ -1127,7 +1127,7 @@ hc_barysmooth_vec3(hc_vec3_t dst, const hc_vec3_t v1, const hc_vec3_t v2, const 
 }
 
 HCSAPI void
-hc_barysmooth_vec3_r(hc_vec3_ptr_t HC_RESTRICT dst, const hc_vec3_t v1, const hc_vec3_t v2, const hc_vec3_t v3, float w1, float w2, float w3)
+hc_vec3_barysmooth_r(hc_vec3_ptr_t HC_RESTRICT dst, const hc_vec3_t v1, const hc_vec3_t v2, const hc_vec3_t v3, float w1, float w2, float w3)
 {
 #   ifdef _OPENMP
 #       pragma omp simd
@@ -1138,7 +1138,7 @@ hc_barysmooth_vec3_r(hc_vec3_ptr_t HC_RESTRICT dst, const hc_vec3_t v1, const hc
 }
 
 HCSAPI void
-hc_barysmooth_vec3_v(hc_vec3_t dst, const hc_vec3_t v1, const hc_vec3_t v2, const hc_vec3_t v3, const hc_vec3_t w)
+hc_vec3_barysmooth_v(hc_vec3_t dst, const hc_vec3_t v1, const hc_vec3_t v2, const hc_vec3_t v3, const hc_vec3_t w)
 {
 #   ifdef _OPENMP
 #       pragma omp simd
@@ -1149,7 +1149,7 @@ hc_barysmooth_vec3_v(hc_vec3_t dst, const hc_vec3_t v1, const hc_vec3_t v2, cons
 }
 
 HCSAPI void
-hc_barysmooth_vec3_vr(hc_vec3_ptr_t HC_RESTRICT dst, const hc_vec3_t v1, const hc_vec3_t v2, const hc_vec3_t v3, const hc_vec3_t w)
+hc_vec3_barysmooth_vr(hc_vec3_ptr_t HC_RESTRICT dst, const hc_vec3_t v1, const hc_vec3_t v2, const hc_vec3_t v3, const hc_vec3_t w)
 {
 #   ifdef _OPENMP
 #       pragma omp simd
@@ -1160,7 +1160,7 @@ hc_barysmooth_vec3_vr(hc_vec3_ptr_t HC_RESTRICT dst, const hc_vec3_t v1, const h
 }
 
 HCSAPI void
-hc_baryflat_vec3(hc_vec4_t dst, const hc_vec4_t v1, const hc_vec4_t v2, const hc_vec4_t v3, float w1, float w2, float w3)
+hc_vec3_baryflat(hc_vec4_t dst, const hc_vec4_t v1, const hc_vec4_t v2, const hc_vec4_t v3, float w1, float w2, float w3)
 {
     // Find the maximum weight
     float max_w = w1;
@@ -1184,7 +1184,7 @@ hc_baryflat_vec3(hc_vec4_t dst, const hc_vec4_t v1, const hc_vec4_t v2, const hc
 }
 
 HCSAPI void
-hc_baryflat_vec3_r(hc_vec4_ptr_t HC_RESTRICT dst, const hc_vec4_t v1, const hc_vec4_t v2, const hc_vec4_t v3, float w1, float w2, float w3)
+hc_vec3_baryflat_r(hc_vec4_ptr_t HC_RESTRICT dst, const hc_vec4_t v1, const hc_vec4_t v2, const hc_vec4_t v3, float w1, float w2, float w3)
 {
     // Find the maximum weight
     float max_w = w1;
@@ -1208,7 +1208,7 @@ hc_baryflat_vec3_r(hc_vec4_ptr_t HC_RESTRICT dst, const hc_vec4_t v1, const hc_v
 }
 
 HCSAPI void
-hc_baryflat_vec3_v(hc_vec4_t dst, const hc_vec4_t v1, const hc_vec4_t v2, const hc_vec4_t v3, const hc_vec3_t w)
+hc_vec3_baryflat_v(hc_vec4_t dst, const hc_vec4_t v1, const hc_vec4_t v2, const hc_vec4_t v3, const hc_vec3_t w)
 {
     // Find the maximum weight
     float max_w = w[0];
@@ -1232,7 +1232,7 @@ hc_baryflat_vec3_v(hc_vec4_t dst, const hc_vec4_t v1, const hc_vec4_t v2, const 
 }
 
 HCSAPI void
-hc_baryflat_vec3_vr(hc_vec4_ptr_t HC_RESTRICT dst, const hc_vec4_t v1, const hc_vec4_t v2, const hc_vec4_t v3, const hc_vec3_t w)
+hc_vec3_baryflat_vr(hc_vec4_ptr_t HC_RESTRICT dst, const hc_vec4_t v1, const hc_vec4_t v2, const hc_vec4_t v3, const hc_vec3_t w)
 {
     // Find the maximum weight
     float max_w = w[0];
@@ -1256,7 +1256,7 @@ hc_baryflat_vec3_vr(hc_vec4_ptr_t HC_RESTRICT dst, const hc_vec4_t v1, const hc_
 }
 
 HCSAPI void
-hc_transform_vec3(hc_vec3_t dst, const hc_vec3_t v, const hc_mat4_t mat)
+hc_vec3_transform(hc_vec3_t dst, const hc_vec3_t v, const hc_mat4_t mat)
 {
     hc_vec3_t tmp = {
         mat[0] * v[0] + mat[4] * v[1] + mat[8] * v[2] + mat[12],
@@ -1270,7 +1270,7 @@ hc_transform_vec3(hc_vec3_t dst, const hc_vec3_t v, const hc_mat4_t mat)
 }
 
 HCSAPI void
-hc_transform_vec3_r(hc_vec3_ptr_t HC_RESTRICT dst, const hc_vec3_t v, const hc_mat4_t mat)
+hc_vec3_transform_r(hc_vec3_ptr_t HC_RESTRICT dst, const hc_vec3_t v, const hc_mat4_t mat)
 {
     dst[0] = mat[0] * v[0] + mat[4] * v[1] + mat[8] * v[2] + mat[12];
     dst[1] = mat[1] * v[0] + mat[5] * v[1] + mat[9] * v[2] + mat[13];
@@ -1278,7 +1278,7 @@ hc_transform_vec3_r(hc_vec3_ptr_t HC_RESTRICT dst, const hc_vec3_t v, const hc_m
 }
 
 HCSAPI void
-hc_transform_vec3_wt(hc_vec3_t dst, const hc_vec3_t v, float w_translation, const hc_mat4_t mat)
+hc_vec3_transform_wt(hc_vec3_t dst, const hc_vec3_t v, float w_translation, const hc_mat4_t mat)
 {
     hc_vec3_t tmp = {
         mat[0] * v[0] + mat[4] * v[1] + mat[8] * v[2] + w_translation*mat[12],
@@ -1292,7 +1292,7 @@ hc_transform_vec3_wt(hc_vec3_t dst, const hc_vec3_t v, float w_translation, cons
 }
 
 HCSAPI void
-hc_transform_vec3_wtr(hc_vec3_ptr_t HC_RESTRICT dst, const hc_vec3_t v, float w_translation, const hc_mat4_t mat)
+hc_vec3_transform_wtr(hc_vec3_ptr_t HC_RESTRICT dst, const hc_vec3_t v, float w_translation, const hc_mat4_t mat)
 {
     dst[0] = mat[0] * v[0] + mat[4] * v[1] + mat[8] * v[2] + w_translation*mat[12];
     dst[1] = mat[1] * v[0] + mat[5] * v[1] + mat[9] * v[2] + w_translation*mat[13];
@@ -1300,7 +1300,7 @@ hc_transform_vec3_wtr(hc_vec3_ptr_t HC_RESTRICT dst, const hc_vec3_t v, float w_
 }
 
 HCSAPI void
-hc_reflect_vec3(hc_vec3_t dst, const hc_vec3_t incident, const hc_vec3_t normal)
+hc_vec3_reflect(hc_vec3_t dst, const hc_vec3_t incident, const hc_vec3_t normal)
 {
     float dotProduct = 0.0f;
 
@@ -1322,7 +1322,7 @@ hc_reflect_vec3(hc_vec3_t dst, const hc_vec3_t incident, const hc_vec3_t normal)
 }
 
 HCSAPI void
-hc_reflect_vec3_r(hc_vec3_ptr_t HC_RESTRICT dst, const hc_vec3_t incident, const hc_vec3_t normal)
+hc_vec3_reflect_r(hc_vec3_ptr_t HC_RESTRICT dst, const hc_vec3_t incident, const hc_vec3_t normal)
 {
     float dotProduct = 0.0f;
 
@@ -1346,7 +1346,7 @@ hc_reflect_vec3_r(hc_vec3_ptr_t HC_RESTRICT dst, const hc_vec3_t incident, const
 /* 4D Vector function definitions */
 
 HCSAPI void
-hc_zero_vec4(hc_vec4_t dst)
+hc_vec4_zero(hc_vec4_t dst)
 {
     for (int_fast8_t i = 0; i < 4; i++) {
         dst[i] = 0;
@@ -1354,19 +1354,19 @@ hc_zero_vec4(hc_vec4_t dst)
 }
 
 HCSAPI void
-hc_one_vec4(hc_vec4_t dst, float v)
+hc_vec4_one(hc_vec4_t dst, float v)
 {
     dst[0] = dst[1] = dst[2] = dst[3] = v;
 }
 
 HCSAPI void
-hc_set_vec4(hc_vec4_t dst, float x, float y, float z, float w)
+hc_vec4_set(hc_vec4_t dst, float x, float y, float z, float w)
 {
     dst[0] = x, dst[1] = y, dst[2] = z, dst[3] = w;
 }
 
 HCSAPI void
-hc_copy_vec4(hc_vec4_ptr_t HC_RESTRICT dst, const hc_vec4_ptr_t HC_RESTRICT src)
+hc_vec4_copy(hc_vec4_ptr_t HC_RESTRICT dst, const hc_vec4_ptr_t HC_RESTRICT src)
 {
     for (int_fast8_t i = 0; i < 4; i++) {
         dst[i] = src[i];
@@ -1374,7 +1374,7 @@ hc_copy_vec4(hc_vec4_ptr_t HC_RESTRICT dst, const hc_vec4_ptr_t HC_RESTRICT src)
 }
 
 HCSAPI void
-hc_swap_vec4(hc_vec4_ptr_t HC_RESTRICT a, hc_vec4_ptr_t HC_RESTRICT b)
+hc_vec4_swap(hc_vec4_ptr_t HC_RESTRICT a, hc_vec4_ptr_t HC_RESTRICT b)
 {
 #   ifdef _OPENMP
 #       pragma omp simd
@@ -1387,7 +1387,7 @@ hc_swap_vec4(hc_vec4_ptr_t HC_RESTRICT a, hc_vec4_ptr_t HC_RESTRICT b)
 }
 
 HCSAPI void
-hc_neg_vec4(hc_vec4_t dst, const hc_vec4_t v)
+hc_vec4_neg(hc_vec4_t dst, const hc_vec4_t v)
 {
 #   ifdef _OPENMP
 #       pragma omp simd
@@ -1398,7 +1398,7 @@ hc_neg_vec4(hc_vec4_t dst, const hc_vec4_t v)
 }
 
 HCSAPI void
-hc_neg_vec4_r(hc_vec4_ptr_t HC_RESTRICT dst, const hc_vec4_t v)
+hc_vec4_neg_r(hc_vec4_ptr_t HC_RESTRICT dst, const hc_vec4_t v)
 {
 #   ifdef _OPENMP
 #       pragma omp simd
@@ -1409,7 +1409,7 @@ hc_neg_vec4_r(hc_vec4_ptr_t HC_RESTRICT dst, const hc_vec4_t v)
 }
 
 HCSAPI void
-hc_add_vec4(hc_vec4_t dst, const hc_vec4_t v1, const hc_vec4_t v2)
+hc_vec4_add(hc_vec4_t dst, const hc_vec4_t v1, const hc_vec4_t v2)
 {
 #   ifdef _OPENMP
 #       pragma omp simd
@@ -1420,7 +1420,7 @@ hc_add_vec4(hc_vec4_t dst, const hc_vec4_t v1, const hc_vec4_t v2)
 }
 
 HCSAPI void
-hc_add_vec4_r(hc_vec4_ptr_t HC_RESTRICT dst, const hc_vec4_t v1, const hc_vec4_t v2)
+hc_vec4_add_r(hc_vec4_ptr_t HC_RESTRICT dst, const hc_vec4_t v1, const hc_vec4_t v2)
 {
 #   ifdef _OPENMP
 #       pragma omp simd
@@ -1431,7 +1431,7 @@ hc_add_vec4_r(hc_vec4_ptr_t HC_RESTRICT dst, const hc_vec4_t v1, const hc_vec4_t
 }
 
 HCSAPI void
-hc_sub_vec4(hc_vec4_t dst, const hc_vec4_t v1, const hc_vec4_t v2)
+hc_vec4_sub(hc_vec4_t dst, const hc_vec4_t v1, const hc_vec4_t v2)
 {
 #   ifdef _OPENMP
 #       pragma omp simd
@@ -1442,7 +1442,7 @@ hc_sub_vec4(hc_vec4_t dst, const hc_vec4_t v1, const hc_vec4_t v2)
 }
 
 HCSAPI void
-hc_sub_vec4_r(hc_vec4_ptr_t HC_RESTRICT dst, const hc_vec4_t v1, const hc_vec4_t v2)
+hc_vec4_sub_r(hc_vec4_ptr_t HC_RESTRICT dst, const hc_vec4_t v1, const hc_vec4_t v2)
 {
 #   ifdef _OPENMP
 #       pragma omp simd
@@ -1453,7 +1453,7 @@ hc_sub_vec4_r(hc_vec4_ptr_t HC_RESTRICT dst, const hc_vec4_t v1, const hc_vec4_t
 }
 
 HCSAPI void
-hc_mul_vec4(hc_vec4_t dst, const hc_vec4_t v1, const hc_vec4_t v2)
+hc_vec4_mul(hc_vec4_t dst, const hc_vec4_t v1, const hc_vec4_t v2)
 {
 #   ifdef _OPENMP
 #       pragma omp simd
@@ -1464,7 +1464,7 @@ hc_mul_vec4(hc_vec4_t dst, const hc_vec4_t v1, const hc_vec4_t v2)
 }
 
 HCSAPI void
-hc_mul_vec4_r(hc_vec4_ptr_t HC_RESTRICT dst, const hc_vec4_t v1, const hc_vec4_t v2)
+hc_vec4_mul_r(hc_vec4_ptr_t HC_RESTRICT dst, const hc_vec4_t v1, const hc_vec4_t v2)
 {
 #   ifdef _OPENMP
 #       pragma omp simd
@@ -1475,7 +1475,7 @@ hc_mul_vec4_r(hc_vec4_ptr_t HC_RESTRICT dst, const hc_vec4_t v1, const hc_vec4_t
 }
 
 HCSAPI void
-hc_div_vec4(hc_vec4_t dst, const hc_vec4_t v1, const hc_vec4_t v2)
+hc_vec4_div(hc_vec4_t dst, const hc_vec4_t v1, const hc_vec4_t v2)
 {
 #   ifdef _OPENMP
 #       pragma omp simd
@@ -1486,7 +1486,7 @@ hc_div_vec4(hc_vec4_t dst, const hc_vec4_t v1, const hc_vec4_t v2)
 }
 
 HCSAPI void
-hc_div_vec4_r(hc_vec4_ptr_t HC_RESTRICT dst, const hc_vec4_t v1, const hc_vec4_t v2)
+hc_vec4_div_r(hc_vec4_ptr_t HC_RESTRICT dst, const hc_vec4_t v1, const hc_vec4_t v2)
 {
 #   ifdef _OPENMP
 #       pragma omp simd
@@ -1497,7 +1497,7 @@ hc_div_vec4_r(hc_vec4_ptr_t HC_RESTRICT dst, const hc_vec4_t v1, const hc_vec4_t
 }
 
 HCSAPI void
-hc_offset_vec4(hc_vec4_t dst, const hc_vec4_t v, float scalar)
+hc_vec4_offset(hc_vec4_t dst, const hc_vec4_t v, float scalar)
 {
 #   ifdef _OPENMP
 #       pragma omp simd
@@ -1508,7 +1508,7 @@ hc_offset_vec4(hc_vec4_t dst, const hc_vec4_t v, float scalar)
 }
 
 HCSAPI void
-hc_offset_vec4_r(hc_vec4_ptr_t HC_RESTRICT dst, const hc_vec4_t v, float scalar)
+hc_vec4_offset_r(hc_vec4_ptr_t HC_RESTRICT dst, const hc_vec4_t v, float scalar)
 {
 #   ifdef _OPENMP
 #       pragma omp simd
@@ -1519,7 +1519,7 @@ hc_offset_vec4_r(hc_vec4_ptr_t HC_RESTRICT dst, const hc_vec4_t v, float scalar)
 }
 
 HCSAPI void
-hc_scale_vec4(hc_vec4_t dst, const hc_vec4_t v, float scalar)
+hc_vec4_scale(hc_vec4_t dst, const hc_vec4_t v, float scalar)
 {
 #   ifdef _OPENMP
 #       pragma omp simd
@@ -1530,7 +1530,7 @@ hc_scale_vec4(hc_vec4_t dst, const hc_vec4_t v, float scalar)
 }
 
 HCSAPI void
-hc_scale_vec4_r(hc_vec4_ptr_t HC_RESTRICT dst, const hc_vec4_t v, float scalar)
+hc_vec4_scale_r(hc_vec4_ptr_t HC_RESTRICT dst, const hc_vec4_t v, float scalar)
 {
 #   ifdef _OPENMP
 #       pragma omp simd
@@ -1541,7 +1541,7 @@ hc_scale_vec4_r(hc_vec4_ptr_t HC_RESTRICT dst, const hc_vec4_t v, float scalar)
 }
 
 HCSAPI void
-hc_normalize_vec4(hc_vec4_t dst, const hc_vec4_t v)
+hc_vec4_normalize(hc_vec4_t dst, const hc_vec4_t v)
 {
     float length_sq = v[0] * v[0] + v[1] * v[1] + v[2] * v[2] + v[3] * v[3];
     if (length_sq == 0.0f) return;
@@ -1557,7 +1557,7 @@ hc_normalize_vec4(hc_vec4_t dst, const hc_vec4_t v)
 }
 
 HCSAPI void
-hc_normalize_vec4_r(hc_vec4_ptr_t HC_RESTRICT dst, const hc_vec4_t v)
+hc_vec4_normalize_r(hc_vec4_ptr_t HC_RESTRICT dst, const hc_vec4_t v)
 {
     float length_sq = v[0] * v[0] + v[1] * v[1] + v[2] * v[2] + v[3] * v[3];
     if (length_sq == 0.0f) return;
@@ -1573,7 +1573,7 @@ hc_normalize_vec4_r(hc_vec4_ptr_t HC_RESTRICT dst, const hc_vec4_t v)
 }
 
 HCSAPI float
-hc_length_vec4(const hc_vec4_t v)
+hc_vec4_length(const hc_vec4_t v)
 {
     return sqrtf(v[0] * v[0] + v[1] * v[1] + v[2] * v[2] + v[3] * v[3]);
 }
@@ -1585,13 +1585,13 @@ hc_length_sq_vec4(const hc_vec4_t v)
 }
 
 HCSAPI float
-hc_dot_vec4(const hc_vec4_t v1, const hc_vec4_t v2)
+hc_vec4_dot(const hc_vec4_t v1, const hc_vec4_t v2)
 {
     return v1[0] * v2[0] + v1[1] * v2[1] + v1[2] * v2[2] + v1[3] * v2[3];
 }
 
 HCSAPI void
-hc_lerp_vec4(hc_vec4_t dst, const hc_vec4_t v1, const hc_vec4_t v2, float t)
+hc_vec4_lerp(hc_vec4_t dst, const hc_vec4_t v1, const hc_vec4_t v2, float t)
 {
 #   ifdef _OPENMP
 #       pragma omp simd
@@ -1602,7 +1602,7 @@ hc_lerp_vec4(hc_vec4_t dst, const hc_vec4_t v1, const hc_vec4_t v2, float t)
 }
 
 HCSAPI void
-hc_lerp_vec4_r(hc_vec4_ptr_t HC_RESTRICT dst, const hc_vec4_t v1, const hc_vec4_t v2, float t)
+hc_vec4_lerp_r(hc_vec4_ptr_t HC_RESTRICT dst, const hc_vec4_t v1, const hc_vec4_t v2, float t)
 {
 #   ifdef _OPENMP
 #       pragma omp simd
@@ -1613,7 +1613,7 @@ hc_lerp_vec4_r(hc_vec4_ptr_t HC_RESTRICT dst, const hc_vec4_t v1, const hc_vec4_
 }
 
 HCSAPI void
-hc_barysmooth_vec4(hc_vec4_t dst, const hc_vec4_t v1, const hc_vec4_t v2, const hc_vec4_t v3, float w1, float w2, float w3)
+hc_vec4_barysmooth(hc_vec4_t dst, const hc_vec4_t v1, const hc_vec4_t v2, const hc_vec4_t v3, float w1, float w2, float w3)
 {
 #   ifdef _OPENMP
 #       pragma omp simd
@@ -1624,7 +1624,7 @@ hc_barysmooth_vec4(hc_vec4_t dst, const hc_vec4_t v1, const hc_vec4_t v2, const 
 }
 
 HCSAPI void
-hc_barysmooth_vec4_r(hc_vec4_ptr_t HC_RESTRICT dst, const hc_vec4_t v1, const hc_vec4_t v2, const hc_vec4_t v3, float w1, float w2, float w3)
+hc_vec4_barysmooth_r(hc_vec4_ptr_t HC_RESTRICT dst, const hc_vec4_t v1, const hc_vec4_t v2, const hc_vec4_t v3, float w1, float w2, float w3)
 {
 #   ifdef _OPENMP
 #       pragma omp simd
@@ -1635,7 +1635,7 @@ hc_barysmooth_vec4_r(hc_vec4_ptr_t HC_RESTRICT dst, const hc_vec4_t v1, const hc
 }
 
 HCSAPI void
-hc_barysmooth_vec4_v(hc_vec4_t dst, const hc_vec4_t v1, const hc_vec4_t v2, const hc_vec4_t v3, const hc_vec3_t w)
+hc_vec4_barysmooth_v(hc_vec4_t dst, const hc_vec4_t v1, const hc_vec4_t v2, const hc_vec4_t v3, const hc_vec3_t w)
 {
 #   ifdef _OPENMP
 #       pragma omp simd
@@ -1646,7 +1646,7 @@ hc_barysmooth_vec4_v(hc_vec4_t dst, const hc_vec4_t v1, const hc_vec4_t v2, cons
 }
 
 HCSAPI void
-hc_barysmooth_vec4_vr(hc_vec4_ptr_t HC_RESTRICT dst, const hc_vec4_t v1, const hc_vec4_t v2, const hc_vec4_t v3, const hc_vec3_t w)
+hc_vec4_barysmooth_vr(hc_vec4_ptr_t HC_RESTRICT dst, const hc_vec4_t v1, const hc_vec4_t v2, const hc_vec4_t v3, const hc_vec3_t w)
 {
 #   ifdef _OPENMP
 #       pragma omp simd
@@ -1657,7 +1657,7 @@ hc_barysmooth_vec4_vr(hc_vec4_ptr_t HC_RESTRICT dst, const hc_vec4_t v1, const h
 }
 
 HCSAPI void
-hc_baryflat_vec4(hc_vec4_t dst, const hc_vec4_t v1, const hc_vec4_t v2, const hc_vec4_t v3, float w1, float w2, float w3)
+hc_vec4_baryflat(hc_vec4_t dst, const hc_vec4_t v1, const hc_vec4_t v2, const hc_vec4_t v3, float w1, float w2, float w3)
 {
     // Find the maximum weight
     float max_w = w1;
@@ -1681,7 +1681,7 @@ hc_baryflat_vec4(hc_vec4_t dst, const hc_vec4_t v1, const hc_vec4_t v2, const hc
 }
 
 HCSAPI void
-hc_baryflat_vec4_r(hc_vec4_ptr_t HC_RESTRICT dst, const hc_vec4_t v1, const hc_vec4_t v2, const hc_vec4_t v3, float w1, float w2, float w3)
+hc_vec4_baryflat_r(hc_vec4_ptr_t HC_RESTRICT dst, const hc_vec4_t v1, const hc_vec4_t v2, const hc_vec4_t v3, float w1, float w2, float w3)
 {
     // Find the maximum weight
     float max_w = w1;
@@ -1705,7 +1705,7 @@ hc_baryflat_vec4_r(hc_vec4_ptr_t HC_RESTRICT dst, const hc_vec4_t v1, const hc_v
 }
 
 HCSAPI void
-hc_baryflat_vec4_v(hc_vec4_t dst, const hc_vec4_t v1, const hc_vec4_t v2, const hc_vec4_t v3, const hc_vec3_t w)
+hc_vec4_baryflat_v(hc_vec4_t dst, const hc_vec4_t v1, const hc_vec4_t v2, const hc_vec4_t v3, const hc_vec3_t w)
 {
     // Find the maximum weight
     float max_w = w[0];
@@ -1729,7 +1729,7 @@ hc_baryflat_vec4_v(hc_vec4_t dst, const hc_vec4_t v1, const hc_vec4_t v2, const 
 }
 
 HCSAPI void
-hc_baryflat_vec4_vr(hc_vec4_ptr_t HC_RESTRICT dst, const hc_vec4_t v1, const hc_vec4_t v2, const hc_vec4_t v3, const hc_vec3_t w)
+hc_vec4_baryflat_vr(hc_vec4_ptr_t HC_RESTRICT dst, const hc_vec4_t v1, const hc_vec4_t v2, const hc_vec4_t v3, const hc_vec3_t w)
 {
     // Find the maximum weight
     float max_w = w[0];
@@ -1753,7 +1753,7 @@ hc_baryflat_vec4_vr(hc_vec4_ptr_t HC_RESTRICT dst, const hc_vec4_t v1, const hc_
 }
 
 HCSAPI void
-hc_transform_vec4(hc_vec4_t dst, const hc_vec4_t v, const hc_mat4_t mat)
+hc_vec4_transform(hc_vec4_t dst, const hc_vec4_t v, const hc_mat4_t mat)
 {
     hc_vec4_t tmp = {
         mat[0] * v[0] + mat[4] * v[1] + mat[8] * v[2] + mat[12] * v[3],
@@ -1768,7 +1768,7 @@ hc_transform_vec4(hc_vec4_t dst, const hc_vec4_t v, const hc_mat4_t mat)
 }
 
 HCSAPI void
-hc_transform_vec4_r(hc_vec4_ptr_t HC_RESTRICT dst, const hc_vec4_t v, const hc_mat4_t mat)
+hc_vec4_transform_r(hc_vec4_ptr_t HC_RESTRICT dst, const hc_vec4_t v, const hc_mat4_t mat)
 {
     dst[0] = mat[0] * v[0] + mat[4] * v[1] + mat[8] * v[2] + mat[12] * v[3];
     dst[1] = mat[1] * v[0] + mat[5] * v[1] + mat[9] * v[2] + mat[13] * v[3];
@@ -1779,7 +1779,7 @@ hc_transform_vec4_r(hc_vec4_ptr_t HC_RESTRICT dst, const hc_vec4_t v, const hc_m
 /* Matrix 4x4 function definitions */
 
 HCSAPI void
-hc_identity_mat4(hc_mat4_t dst)
+hc_mat4_identity(hc_mat4_t dst)
 {
     for (int_fast8_t i = 0; i < 16; i++) {
         dst[i] = (float)(!(i % 5));
@@ -1787,7 +1787,7 @@ hc_identity_mat4(hc_mat4_t dst)
 }
 
 HCSAPI void
-hc_copy_mat4(hc_mat4_ptr_t HC_RESTRICT dst, const hc_mat4_ptr_t HC_RESTRICT src)
+hc_mat4_copy(hc_mat4_ptr_t HC_RESTRICT dst, const hc_mat4_ptr_t HC_RESTRICT src)
 {
     for (int_fast8_t i = 0; i < 16; i++) {
         dst[i] = src[i];
@@ -1795,7 +1795,7 @@ hc_copy_mat4(hc_mat4_ptr_t HC_RESTRICT dst, const hc_mat4_ptr_t HC_RESTRICT src)
 }
 
 HCSAPI void
-hc_translate_mat4(hc_mat4_t dst, float x, float y, float z)
+hc_mat4_translate(hc_mat4_t dst, float x, float y, float z)
 {
     for (int_fast8_t i = 0; i < 16; i++) {
         dst[i] = (float)(!(i % 5));
@@ -1806,9 +1806,9 @@ hc_translate_mat4(hc_mat4_t dst, float x, float y, float z)
 }
 
 HCSAPI void
-hc_rotate_mat4(hc_mat4_t dst, const hc_vec3_t axis, float radians)
+hc_mat4_rotate(hc_mat4_t dst, const hc_vec3_t axis, float radians)
 {
-    // hc_identity_mat4()
+    // hc_mat4_identity()
     for (int_fast8_t i = 0; i < 16; i++) {
         dst[i] = (float)(!(i % 5));
     }
@@ -1843,7 +1843,7 @@ hc_rotate_mat4(hc_mat4_t dst, const hc_vec3_t axis, float radians)
 HCSAPI void
 hc_rotate_x_mat4(hc_mat4_t dst, float radians)
 {
-    // hc_identity_mat4()
+    // hc_mat4_identity()
     for (int_fast8_t i = 0; i < 16; i++) {
         dst[i] = (float)(!(i % 5));
     }
@@ -1861,7 +1861,7 @@ hc_rotate_x_mat4(hc_mat4_t dst, float radians)
 HCSAPI void
 hc_rotate_y_mat4(hc_mat4_t dst, float radians)
 {
-    // hc_identity_mat4()
+    // hc_mat4_identity()
     for (int_fast8_t i = 0; i < 16; i++) {
         dst[i] = (float)(!(i % 5));
     }
@@ -1878,7 +1878,7 @@ hc_rotate_y_mat4(hc_mat4_t dst, float radians)
 HCSAPI void
 hc_rotate_z_mat4(hc_mat4_t dst, float radians)
 {
-    // hc_identity_mat4()
+    // hc_mat4_identity()
     for (int_fast8_t i = 0; i < 16; i++) {
         dst[i] = (float)(!(i % 5));
     }
@@ -1896,7 +1896,7 @@ hc_rotate_z_mat4(hc_mat4_t dst, float radians)
 HCSAPI void
 hc_rotate_xyz_mat4(hc_mat4_t dst, const hc_vec3_t radians)
 {
-    // hc_identity_mat4()
+    // hc_mat4_identity()
     for (int_fast8_t i = 0; i < 16; i++) {
         dst[i] = (float)(!(i % 5));
     }
@@ -1925,7 +1925,7 @@ hc_rotate_xyz_mat4(hc_mat4_t dst, const hc_vec3_t radians)
 HCSAPI void
 h_rotate_zyx_mat4(hc_mat4_t dst, const hc_vec3_t radians)
 {
-    // hc_identity_mat4()
+    // hc_mat4_identity()
     for (int_fast8_t i = 0; i < 16; i++) {
         dst[i] = (float)(!(i % 5));
     }
@@ -1951,14 +1951,14 @@ h_rotate_zyx_mat4(hc_mat4_t dst, const hc_vec3_t radians)
 }
 
 HCSAPI void
-hc_scale_mat4(hc_mat4_t dst, float x, float y, float z)
+hc_mat4_scale(hc_mat4_t dst, float x, float y, float z)
 {
     for (int_fast8_t i = 0; i < 16; i++) dst[i] = 0;
     dst[0] = x, dst[5] = y, dst[10] = z, dst[15] = 1.0;
 }
 
 HCSAPI void
-hc_frustum_mat4(hc_mat4_t dst, float left, float right, float bottom, float top, float znear, float zfar)
+hc_mat4_frustum(hc_mat4_t dst, float left, float right, float bottom, float top, float znear, float zfar)
 {
     for (int_fast8_t i = 0; i < 16; i++) {
         dst[i] = 0;
@@ -1980,7 +1980,7 @@ hc_frustum_mat4(hc_mat4_t dst, float left, float right, float bottom, float top,
 }
 
 HCSAPI void
-hc_perspective_mat4(hc_mat4_t dst, float fovy_rad, float aspect, float znear, float zfar)
+hc_mat4_perspective(hc_mat4_t dst, float fovy_rad, float aspect, float znear, float zfar)
 {
     for (int_fast8_t i = 0; i < 16; i++) {
         dst[i] = 0;
@@ -1991,7 +1991,7 @@ hc_perspective_mat4(hc_mat4_t dst, float fovy_rad, float aspect, float znear, fl
     float right = top * aspect;
     float left = -right;
 
-    // hc_frustum_mat4(-right, right, -top, top, near, far);
+    // hc_mat4_frustum(-right, right, -top, top, near, far);
     float rl = right - left;
     float tb = top - bottom;
     float fn = zfar - znear;
@@ -2008,7 +2008,7 @@ hc_perspective_mat4(hc_mat4_t dst, float fovy_rad, float aspect, float znear, fl
 }
 
 HCSAPI void
-hc_ortho_mat4(hc_mat4_t dst, float left, float right, float bottom, float top, float znear, float zfar)
+hc_mat4_ortho(hc_mat4_t dst, float left, float right, float bottom, float top, float znear, float zfar)
 {
     for (int_fast8_t i = 0; i < 16; i++) {
         dst[i] = 0;
@@ -2047,7 +2047,7 @@ hc_look_at_mat4(hc_mat4_t dst, const hc_vec3_t eye, const hc_vec3_t target, cons
         eye[2] - target[2]
     };
 
-    // hc_normalize_vec3(vz)
+    // hc_vec3_normalize(vz)
     hc_vec3_t v = { vz[0], vz[1], vz[2] };
     length = sqrtf(v[0] * v[0] + v[1] * v[1] + v[2] * v[2]);
     if (length == 0.0f) length = 1.0f;
@@ -2056,14 +2056,14 @@ hc_look_at_mat4(hc_mat4_t dst, const hc_vec3_t eye, const hc_vec3_t target, cons
     vz[1] *= invLenght;
     vz[2] *= invLenght;
 
-    // hc_cross_vec3(up, vz)
+    // hc_vec3_cross(up, vz)
     hc_vec3_t vx = {
         up[1] * vz[2] - up[2] * vz[1],
         up[2] * vz[0] - up[0] * vz[2],
         up[0] * vz[1] - up[1] * vz[0]
     };
 
-    // hc_normalize_vec3(x)
+    // hc_vec3_normalize(x)
     for (int_fast8_t i = 0; i < 3; i++) v[i] = vx[i];
     length = sqrtf(v[0] * v[0] + v[1] * v[1] + v[2] * v[2]);
     if (length == 0.0f) length = 1.0f;
@@ -2072,7 +2072,7 @@ hc_look_at_mat4(hc_mat4_t dst, const hc_vec3_t eye, const hc_vec3_t target, cons
     vx[1] *= invLenght;
     vx[2] *= invLenght;
 
-    // hc_cross_vec3(vz, vx)
+    // hc_vec3_cross(vz, vx)
     hc_vec3_t vy = {
         vz[1] * vx[2] - vz[2] * vx[1],
         vz[2] * vx[0] - vz[0] * vx[2],
@@ -2091,14 +2091,14 @@ hc_look_at_mat4(hc_mat4_t dst, const hc_vec3_t eye, const hc_vec3_t target, cons
     dst[9] = vy[2];
     dst[10] = vz[2];
 
-    dst[12] = -(vx[0]*eye[0] + vx[1]*eye[1] + vx[2]*eye[2]);   // hc_dot_vec3(vx, eye)
-    dst[13] = -(vy[0]*eye[0] + vy[1]*eye[1] + vy[2]*eye[2]);   // hc_dot_vec3(vy, eye)
-    dst[14] = -(vz[0]*eye[0] + vz[1]*eye[1] + vz[2]*eye[2]);   // hc_dot_vec3(vz, eye)
+    dst[12] = -(vx[0]*eye[0] + vx[1]*eye[1] + vx[2]*eye[2]);   // hc_vec3_dot(vx, eye)
+    dst[13] = -(vy[0]*eye[0] + vy[1]*eye[1] + vy[2]*eye[2]);   // hc_vec3_dot(vy, eye)
+    dst[14] = -(vz[0]*eye[0] + vz[1]*eye[1] + vz[2]*eye[2]);   // hc_vec3_dot(vz, eye)
     dst[15] = 1.0f;
 }
 
 HCSAPI float
-hc_determinant_mat4(const hc_mat4_t mat)
+hc_mat4_determinant(const hc_mat4_t mat)
 {
     float result = 0.0f;
 
@@ -2119,7 +2119,7 @@ hc_determinant_mat4(const hc_mat4_t mat)
 }
 
 HCSAPI void
-hc_transpose_mat4(hc_mat4_t dst, const hc_mat4_t src)
+hc_mat4_transpose(hc_mat4_t dst, const hc_mat4_t src)
 {
     hc_mat4_t result;
     for (int_fast8_t i = 0; i < 4; i++) {
@@ -2133,7 +2133,7 @@ hc_transpose_mat4(hc_mat4_t dst, const hc_mat4_t src)
 }
 
 HCSAPI void
-hc_transpose_mat4_r(hc_mat4_ptr_t HC_RESTRICT dst, const hc_mat4_t src)
+hc_mat4_transpose_r(hc_mat4_ptr_t HC_RESTRICT dst, const hc_mat4_t src)
 {
     for (int_fast8_t i = 0; i < 4; i++) {
         for (int_fast8_t j = 0; j < 4; j++) {
@@ -2143,7 +2143,7 @@ hc_transpose_mat4_r(hc_mat4_ptr_t HC_RESTRICT dst, const hc_mat4_t src)
 }
 
 HCSAPI void
-hc_invert_mat4(hc_mat4_t dst, const hc_mat4_t src)
+hc_mat4_invert(hc_mat4_t dst, const hc_mat4_t src)
 {
     // Cache the matrix values (speed optimization)
     float a00 = src[0],  a01 = src[1],  a02 = src[2],  a03 = src[3];
@@ -2186,13 +2186,13 @@ hc_invert_mat4(hc_mat4_t dst, const hc_mat4_t src)
 }
 
 HCSAPI float
-hc_trace_mat4(const hc_mat4_t mat)
+hc_mat4_trace(const hc_mat4_t mat)
 {
     return mat[0] + mat[5] + mat[10] + mat[15];
 }
 
 HCSAPI void
-hc_add_mat4(hc_mat4_t dst, const hc_mat4_t left, const hc_mat4_t right)
+hc_mat4_add(hc_mat4_t dst, const hc_mat4_t left, const hc_mat4_t right)
 {
 #   ifdef _OPENMP
 #       pragma omp simd
@@ -2203,7 +2203,7 @@ hc_add_mat4(hc_mat4_t dst, const hc_mat4_t left, const hc_mat4_t right)
 }
 
 HCSAPI void
-hc_add_mat4_r(hc_mat4_ptr_t HC_RESTRICT dst, const hc_mat4_t left, const hc_mat4_t right)
+hc_mat4_add_r(hc_mat4_ptr_t HC_RESTRICT dst, const hc_mat4_t left, const hc_mat4_t right)
 {
 #   ifdef _OPENMP
 #       pragma omp simd
@@ -2214,7 +2214,7 @@ hc_add_mat4_r(hc_mat4_ptr_t HC_RESTRICT dst, const hc_mat4_t left, const hc_mat4
 }
 
 HCSAPI void
-hc_sub_mat4(hc_mat4_t dst, const hc_mat4_t left, const hc_mat4_t right)
+hc_mat4_sub(hc_mat4_t dst, const hc_mat4_t left, const hc_mat4_t right)
 {
 #   ifdef _OPENMP
 #       pragma omp simd
@@ -2225,7 +2225,7 @@ hc_sub_mat4(hc_mat4_t dst, const hc_mat4_t left, const hc_mat4_t right)
 }
 
 HCSAPI void
-hc_sub_mat4_r(hc_mat4_ptr_t HC_RESTRICT dst, const hc_mat4_t left, const hc_mat4_t right)
+hc_mat4_sub_r(hc_mat4_ptr_t HC_RESTRICT dst, const hc_mat4_t left, const hc_mat4_t right)
 {
 #   ifdef _OPENMP
 #       pragma omp simd
@@ -2236,7 +2236,7 @@ hc_sub_mat4_r(hc_mat4_ptr_t HC_RESTRICT dst, const hc_mat4_t left, const hc_mat4
 }
 
 HCSAPI void
-hc_mul_mat4(hc_mat4_t dst, const hc_mat4_t left, const hc_mat4_t right)
+hc_mat4_mul(hc_mat4_t dst, const hc_mat4_t left, const hc_mat4_t right)
 {
     hc_mat4_t result;
 #   ifdef _OPENMP
@@ -2257,7 +2257,7 @@ hc_mul_mat4(hc_mat4_t dst, const hc_mat4_t left, const hc_mat4_t right)
 }
 
 HCSAPI void
-hc_mul_mat4_r(hc_mat4_ptr_t HC_RESTRICT dst, const hc_mat4_t left, const hc_mat4_t right)
+hc_mat4_mul_r(hc_mat4_ptr_t HC_RESTRICT dst, const hc_mat4_t left, const hc_mat4_t right)
 {
 #   ifdef _OPENMP
 #       pragma omp simd

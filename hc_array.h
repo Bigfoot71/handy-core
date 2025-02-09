@@ -62,33 +62,33 @@ typedef struct hc_array_t {
 
 /* Function declarations */
 
-hc_array_t hc_create_array(size_t capacity, size_t elem_size);
-void hc_destroy_array(hc_array_t* vec);
-hc_array_t hc_copy_array(const hc_array_t* src);
-bool hc_is_valid_array(const hc_array_t* vec);
-bool hc_is_empty_array(const hc_array_t* vec);
-int hc_reserve_array(hc_array_t* vec, size_t new_capacity);
-int hc_shrink_to_fit_array(hc_array_t* vec);
-void hc_clear_array(hc_array_t* vec);
-void hc_fill_array(hc_array_t* vec, const void* data);
-int hc_insert_array(hc_array_t* vec, size_t index, const void* elements, size_t count);
-const void* hc_end_array(const hc_array_t* vec);
-void* hc_back_array(hc_array_t* vec);
-void* hc_front_array(hc_array_t* vec);
-void* hc_at_array(hc_array_t* vec, size_t index);
-int hc_push_back_array(hc_array_t* vec, const void *element);
-int hc_push_front_array(hc_array_t* vec, const void *element);
-int hc_push_at_array(hc_array_t* vec, size_t index, const void* element);
-int hc_pop_back_array(hc_array_t* vec, void* element);
-int hc_pop_front_array(hc_array_t* vec, void* element);
-int hc_pop_at_array(hc_array_t* vec, size_t index, void* element);
-bool hc_compare_array(const hc_array_t* a, const hc_array_t* b);
+hc_array_t hc_array_create(size_t capacity, size_t elem_size);
+void hc_array_destroy(hc_array_t* vec);
+hc_array_t hc_array_copy(const hc_array_t* src);
+bool hc_array_is_valid(const hc_array_t* vec);
+bool hc_array_is_empty(const hc_array_t* vec);
+int hc_array_reserve(hc_array_t* vec, size_t new_capacity);
+int hc_array_shrink_to_fit(hc_array_t* vec);
+void hc_array_clear(hc_array_t* vec);
+void hc_array_fill(hc_array_t* vec, const void* data);
+int hc_array_insert(hc_array_t* vec, size_t index, const void* elements, size_t count);
+const void* hc_array_end(const hc_array_t* vec);
+void* hc_array_back(hc_array_t* vec);
+void* hc_array_front(hc_array_t* vec);
+void* hc_array_at(hc_array_t* vec, size_t index);
+int hc_array_push_back(hc_array_t* vec, const void *element);
+int hc_array_push_front(hc_array_t* vec, const void *element);
+int hc_array_push_at(hc_array_t* vec, size_t index, const void* element);
+int hc_array_pop_back(hc_array_t* vec, void* element);
+int hc_array_pop_front(hc_array_t* vec, void* element);
+int hc_array_pop_at(hc_array_t* vec, size_t index, void* element);
+bool hc_array_compare(const hc_array_t* a, const hc_array_t* b);
 
 #endif // HC_ARRAY_H
 
 #ifdef HC_ARRAY_IMPL
 
-hc_array_t hc_create_array(size_t capacity, size_t elem_size)
+hc_array_t hc_array_create(size_t capacity, size_t elem_size)
 {
     hc_array_t vec = { 0 };
 
@@ -106,7 +106,7 @@ hc_array_t hc_create_array(size_t capacity, size_t elem_size)
     return vec;
 }
 
-void hc_destroy_array(hc_array_t* vec)
+void hc_array_destroy(hc_array_t* vec)
 {
     if (vec->data) {
         HC_FREE(vec->data);
@@ -117,7 +117,7 @@ void hc_destroy_array(hc_array_t* vec)
     vec->elem_size = 0;
 }
 
-hc_array_t hc_copy_array(const hc_array_t* src)
+hc_array_t hc_array_copy(const hc_array_t* src)
 {
     hc_array_t vec = { 0 };
 
@@ -136,19 +136,19 @@ hc_array_t hc_copy_array(const hc_array_t* src)
     return vec;
 }
 
-bool hc_is_valid_array(const hc_array_t* vec)
+bool hc_array_is_valid(const hc_array_t* vec)
 {
     return vec->data != NULL
         && vec->capacity > 0
         && vec->elem_size > 0;
 }
 
-bool hc_is_empty_array(const hc_array_t* vec)
+bool hc_array_is_empty(const hc_array_t* vec)
 {
     return vec->count == 0;
 }
 
-int hc_reserve_array(hc_array_t* vec, size_t new_capacity)
+int hc_array_reserve(hc_array_t* vec, size_t new_capacity)
 {
     if (vec->capacity >= new_capacity) {
         return HC_ARRAY_SUCCESS;
@@ -163,7 +163,7 @@ int hc_reserve_array(hc_array_t* vec, size_t new_capacity)
     return HC_ARRAY_SUCCESS;
 }
 
-int hc_shrink_to_fit_array(hc_array_t* vec)
+int hc_array_shrink_to_fit(hc_array_t* vec)
 {
     if (vec->count == vec->capacity) {
         return 1;
@@ -182,12 +182,12 @@ int hc_shrink_to_fit_array(hc_array_t* vec)
     return HC_ARRAY_SUCCESS;
 }
 
-void hc_clear_array(hc_array_t* vec)
+void hc_array_clear(hc_array_t* vec)
 {
     vec->count = 0;
 }
 
-void hc_fill_array(hc_array_t* vec, const void* data)
+void hc_array_fill(hc_array_t* vec, const void* data)
 {
     const void *end = (char*)vec->data + vec->capacity * vec->elem_size;
     for (char *ptr = (char*)vec->data; (void*)ptr < end; ptr += vec->elem_size) {
@@ -196,7 +196,7 @@ void hc_fill_array(hc_array_t* vec, const void* data)
     vec->count = vec->capacity;
 }
 
-int hc_insert_array(hc_array_t* vec, size_t index, const void* elements, size_t count)
+int hc_array_insert(hc_array_t* vec, size_t index, const void* elements, size_t count)
 {
     if (index > vec->count) {
         return HC_ARRAY_ERROR_OUT_OF_BOUNDS;
@@ -221,7 +221,7 @@ int hc_insert_array(hc_array_t* vec, size_t index, const void* elements, size_t 
             #endif
             new_size++;
         }
-        int ret = hc_reserve_array(vec, new_size);
+        int ret = hc_array_reserve(vec, new_size);
         if (ret < 0) return ret;
     }
 
@@ -241,28 +241,28 @@ int hc_insert_array(hc_array_t* vec, size_t index, const void* elements, size_t 
     return HC_ARRAY_SUCCESS;
 }
 
-const void* hc_end_array(const hc_array_t* vec)
+const void* hc_array_end(const hc_array_t* vec)
 {
     return (const char*)vec->data + vec->count * vec->elem_size;
 }
 
-void* hc_back_array(hc_array_t* vec)
+void* hc_array_back(hc_array_t* vec)
 {
     return (char*)vec->data + (vec->count - 1) * vec->elem_size;
 }
 
-void* hc_front_array(hc_array_t* vec)
+void* hc_array_front(hc_array_t* vec)
 {
     return vec->data;
 }
 
-void* hc_at_array(hc_array_t* vec, size_t index)
+void* hc_array_at(hc_array_t* vec, size_t index)
 {
     if (index >= vec->count) return NULL;
     return (char*)vec->data + index * vec->elem_size;
 }
 
-int hc_push_back_array(hc_array_t* vec, const void *element)
+int hc_array_push_back(hc_array_t* vec, const void *element)
 {
     if (vec->count >= vec->capacity) {
         // Here we increase the capacity of the
@@ -282,7 +282,7 @@ int hc_push_back_array(hc_array_t* vec, const void *element)
             #endif
             new_size++;
         }
-        int ret = hc_reserve_array(vec, new_size);
+        int ret = hc_array_reserve(vec, new_size);
         if (ret < 0) return ret;
     }
 
@@ -293,7 +293,7 @@ int hc_push_back_array(hc_array_t* vec, const void *element)
     return HC_ARRAY_SUCCESS;
 }
 
-int hc_push_front_array(hc_array_t* vec, const void *element)
+int hc_array_push_front(hc_array_t* vec, const void *element)
 {
     if (vec->count >= vec->capacity) {
         // Here we increase the capacity of the
@@ -313,7 +313,7 @@ int hc_push_front_array(hc_array_t* vec, const void *element)
             #endif
             new_size++;
         }
-        int ret = hc_reserve_array(vec, new_size);
+        int ret = hc_array_reserve(vec, new_size);
         if (ret < 0) return ret;
     }
 
@@ -332,7 +332,7 @@ int hc_push_front_array(hc_array_t* vec, const void *element)
     return HC_ARRAY_SUCCESS;
 }
 
-int hc_push_at_array(hc_array_t* vec, size_t index, const void* element)
+int hc_array_push_at(hc_array_t* vec, size_t index, const void* element)
 {
     if (index >= vec->count) {
         return HC_ARRAY_ERROR_OUT_OF_BOUNDS;
@@ -356,7 +356,7 @@ int hc_push_at_array(hc_array_t* vec, size_t index, const void* element)
             #endif
             new_size++;
         }
-        int ret = hc_reserve_array(vec, new_size);
+        int ret = hc_array_reserve(vec, new_size);
         if (ret < 0) return ret;
     }
 
@@ -377,7 +377,7 @@ int hc_push_at_array(hc_array_t* vec, size_t index, const void* element)
     return HC_ARRAY_SUCCESS;
 }
 
-int hc_pop_back_array(hc_array_t* vec, void* element)
+int hc_array_pop_back(hc_array_t* vec, void* element)
 {
     if (vec->count == 0) {
         return HC_ARRAY_EMPTY;
@@ -392,7 +392,7 @@ int hc_pop_back_array(hc_array_t* vec, void* element)
     return HC_ARRAY_SUCCESS;
 }
 
-int hc_pop_front_array(hc_array_t* vec, void* element)
+int hc_array_pop_front(hc_array_t* vec, void* element)
 {
     if (vec->count == 0) {
         return HC_ARRAY_EMPTY;
@@ -414,7 +414,7 @@ int hc_pop_front_array(hc_array_t* vec, void* element)
     return HC_ARRAY_SUCCESS;
 }
 
-int hc_pop_at_array(hc_array_t* vec, size_t index, void* element)
+int hc_array_pop_at(hc_array_t* vec, size_t index, void* element)
 {
     if (index >= vec->count) {
         return HC_ARRAY_ERROR_OUT_OF_BOUNDS;
@@ -438,7 +438,7 @@ int hc_pop_at_array(hc_array_t* vec, size_t index, void* element)
     return HC_ARRAY_SUCCESS;
 }
 
-bool hc_compare_array(const hc_array_t* a, const hc_array_t* b)
+bool hc_array_compare(const hc_array_t* a, const hc_array_t* b)
 {
     if (a->count != b->count || a->elem_size != b->elem_size) {
         return false;
