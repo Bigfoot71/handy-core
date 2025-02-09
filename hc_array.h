@@ -54,16 +54,16 @@ enum hc_retcode_array {
 };
 
 typedef struct hc_array_t {
-    void *data;             // Pointer to vector elements
-    size_t count;           // Number of elements currently in the vector
-    size_t capacity;        // Total vector capacity (allocated space)
+    void *data;             // Pointer to array elements
+    size_t count;           // Number of elements currently in the array
+    size_t capacity;        // Total array capacity (allocated space)
     size_t elem_size;       // Size of an element (in bytes)
 } hc_array_t;
 
 /* Function declarations */
 
 hc_array_t hc_create_array(size_t capacity, size_t elem_size);
-void hc_destroy_vector(hc_array_t* vec);
+void hc_destroy_array(hc_array_t* vec);
 hc_array_t hc_copy_array(const hc_array_t* src);
 bool hc_is_valid_array(const hc_array_t* vec);
 bool hc_is_empty_array(const hc_array_t* vec);
@@ -106,7 +106,7 @@ hc_array_t hc_create_array(size_t capacity, size_t elem_size)
     return vec;
 }
 
-void hc_destroy_vector(hc_array_t* vec)
+void hc_destroy_array(hc_array_t* vec)
 {
     if (vec->data) {
         HC_FREE(vec->data);
@@ -235,7 +235,7 @@ int hc_insert_array(hc_array_t* vec, size_t index, const void* elements, size_t 
     void *target = (char*)vec->data + index * vec->elem_size;
     memcpy(target, elements, count * vec->elem_size);
 
-    // Updating vector count
+    // Updating array count
     vec->count = new_size;
 
     return HC_ARRAY_SUCCESS;
@@ -408,7 +408,7 @@ int hc_pop_front_array(hc_array_t* vec, void* element)
     size_t bytes_to_move = (vec->count - 1) * vec->elem_size;
     memmove(destination, source, bytes_to_move);
 
-    // Reduce vector count
+    // Reduce array count
     vec->count--;
 
     return HC_ARRAY_SUCCESS;
@@ -432,7 +432,7 @@ int hc_pop_at_array(hc_array_t* vec, size_t index, void* element)
 
     memmove(destination, source_start, bytes_to_move);
 
-    // Reduce vector count
+    // Reduce array count
     vec->count--;
 
     return HC_ARRAY_SUCCESS;
