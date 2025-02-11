@@ -287,7 +287,8 @@ int hc_array_push_back(hc_array_t* vec, const void *element)
     }
 
     void *target = (char*)vec->data + vec->count * vec->elem_size;
-    memcpy(target, element, vec->elem_size);
+    if (element) memcpy(target, element, vec->elem_size);
+    else memset(target, 0, vec->elem_size);
     vec->count++;
 
     return HC_ARRAY_SUCCESS;
@@ -323,8 +324,9 @@ int hc_array_push_front(hc_array_t* vec, const void *element)
     size_t bytes_to_move = vec->count * vec->elem_size;
     memmove(destination, source, bytes_to_move);
 
-    // Copy new item to start
-    memcpy(vec->data, element, vec->elem_size);
+    // Copy new item to start or fill with zeroes
+    if (element) memcpy(vec->data, element, vec->elem_size);
+    else memset(vec->data, 0, vec->elem_size);
 
     // Increment count
     vec->count++;
@@ -366,10 +368,9 @@ int hc_array_push_at(hc_array_t* vec, size_t index, const void* element)
     size_t bytes_to_move = (vec->count - index) * vec->elem_size;
     memmove(destination, source, bytes_to_move);
 
-    // Copy the new element to the specified position
-    if (element != NULL) {
-        memcpy(source, element, vec->elem_size);
-    }
+    // Copy new item to destination or fill with zeroes
+    if (element) memcpy(source, element, vec->elem_size);
+    else memset(source, 0, vec->elem_size);
 
     // Increment count
     vec->count++;
