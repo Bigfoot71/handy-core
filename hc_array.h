@@ -124,8 +124,8 @@ hc_array_t hc_array_copy(const hc_array_t* src)
     size_t size_in_bytes = src->count * src->elem_size;
     if (size_in_bytes == 0) return vec;
 
-    void* data = HC_MALLOC(size_in_bytes);
-    if (!data) return vec;
+    vec.data = HC_MALLOC(size_in_bytes);
+    if (vec.data == NULL) return vec;
 
     memcpy(vec.data, src->data, size_in_bytes);
 
